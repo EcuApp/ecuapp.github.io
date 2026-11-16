@@ -136,11 +136,11 @@ try {
     assert.ok(layout.header.left >= -1 && layout.header.right <= viewport.width + 1, "Header escapes viewport at " + viewport.width + "px");
     assert.equal(layout.headerWithinViewport, true, "Header content overflows at " + viewport.width + "px");
     assert.deepEqual(layout.nodeCollisions, [], "Product nodes overlap at " + viewport.width + "px");
+    assert.deepEqual(layout.heroCollisions, [], "Hero diagram elements overlap at " + viewport.width + "px");
     assert.deepEqual(layout.productCollisions, [], "Product cards overlap at " + viewport.width + "px");
     if (viewport.width <= 1120) {
       assert.equal(layout.visualDisplay, "grid", "Tablet/mobile diagram should use grid at " + viewport.width + "px");
       assert.equal(layout.diagramNodePosition, "relative", "Tablet/mobile nodes must be in normal flow at " + viewport.width + "px");
-      assert.deepEqual(layout.heroCollisions, [], "Hero diagram elements overlap at " + viewport.width + "px");
     }
     console.log("Responsive viewport OK:", viewport.width + "x" + viewport.height);
   }
