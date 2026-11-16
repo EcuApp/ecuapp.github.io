@@ -561,7 +561,7 @@ h1, h2, h3, p {
 }
 
 /* Compact navigation before the desktop links become cramped. */
-@media (max-width: 1120px) {
+@media (max-width: 1150px) {
   .desktop-nav {
     display: none !important;
   }
