@@ -234,6 +234,7 @@
     document.addEventListener('click', event => {
       if (!event.target.closest('.nav-item')) closeMegaMenus();
     });
+    $('.mega-menu a').forEach(link => link.addEventListener('click', closeMegaMenus));
     document.addEventListener('keydown', event => {
       if (event.key === 'Escape') closeMegaMenus();
     });
