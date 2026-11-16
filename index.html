@@ -96,7 +96,7 @@
         <button class="icon-button search-open" type="button" aria-label="Buscar en EcuApp" data-i18n-aria="search.open" title="Buscar (Ctrl/⌘ K)">⌕</button>
         <label class="language-switch"><span aria-hidden="true">◎</span><select id="language-select" aria-label="Idioma"><option value="es">ES</option><option value="en">EN</option></select></label>
         <button class="icon-button theme-toggle" type="button" aria-label="Cambiar tema" data-i18n-aria="theme.change" title="Cambiar tema"><span class="theme-glyph">☼</span></button>
-        <a class="button button-quiet header-access" href="#credenciales" data-i18n="nav.access">Acceso</a>
+        <button class="button button-quiet header-access" type="button" data-open-credentials data-i18n="nav.access">Acceso</button>
         <a class="button button-primary header-contact" href="#contacto" data-i18n="nav.contact">Contacto</a>
         <button class="mobile-menu-toggle" type="button" aria-expanded="false" aria-controls="mobile-nav" aria-label="Abrir menú" data-i18n-aria="mobileMenu"><span></span><span></span></button>
       </div>
@@ -109,6 +109,7 @@
       <a href="#casos" data-i18n="nav.cases">Casos</a>
       <a href="#precios" data-i18n="nav.pricing">Precios</a>
       <a href="#contacto" data-i18n="nav.contact">Contacto</a>
+      <button class="mobile-access-button" type="button" data-open-credentials data-i18n="nav.access">Acceso</button>
     </nav>
   </header>
 
@@ -361,6 +362,28 @@
   <dialog class="dialog" id="product-dialog" aria-labelledby="product-dialog-title">
     <button class="icon-button dialog-close" type="button" aria-label="Cerrar" data-i18n-aria="close">×</button>
     <div class="dialog-inner" id="product-dialog-content"></div>
+  </dialog>
+
+  <dialog class="dialog credentials-dialog" id="credentials-dialog" aria-labelledby="credentials-title">
+    <button class="icon-button credentials-close" type="button" aria-label="Cerrar" data-i18n-aria="close">×</button>
+    <div class="dialog-inner">
+      <span class="eyebrow" data-i18n="credentials.eyebrow">ACCESO CONTROLADO</span>
+      <h2 id="credentials-title" data-i18n="credentials.title">Solicita acceso a un producto EcuApp.</h2>
+      <p data-i18n="credentials.description">Los entornos privados se habilitan después de validar la organización, el caso de uso y los permisos necesarios. Nunca compartas contraseñas ni tokens por correo.</p>
+      <form class="access-form" id="credentials-form">
+        <label><span data-i18n="credentials.email">Correo corporativo</span><input type="email" name="email" required maxlength="160" autocomplete="email" data-i18n-placeholder="form.emailPlaceholder" placeholder="nombre@empresa.com"></label>
+        <div class="form-row">
+          <label><span data-i18n="credentials.organization">Organización</span><input type="text" name="organization" required maxlength="140" autocomplete="organization" data-i18n-placeholder="form.companyPlaceholder" placeholder="Empresa (opcional)"></label>
+          <label><span data-i18n="credentials.product">Producto</span><select name="product" id="credentials-product" required></select></label>
+        </div>
+        <label><span data-i18n="credentials.role">Perfil de acceso solicitado</span><select name="role" required><option value="Evaluation" data-i18n="credentials.roleEvaluation">Evaluación técnica</option><option value="Developer" data-i18n="credentials.roleDeveloper">Desarrollador / integración</option><option value="Business" data-i18n="credentials.roleBusiness">Usuario empresarial</option><option value="Partner" data-i18n="credentials.rolePartner">Socio / proveedor</option></select></label>
+        <label><span data-i18n="credentials.purpose">Propósito y alcance</span><textarea name="purpose" required minlength="20" maxlength="1200" data-i18n-placeholder="credentials.purposePlaceholder" placeholder="Describe qué necesitas evaluar o integrar. No incluyas secretos."></textarea></label>
+        <label class="access-consent"><input type="checkbox" name="consent" required><span data-i18n="credentials.consent">Autorizo que EcuApp use estos datos para revisar y responder mi solicitud.</span></label>
+        <button class="button button-primary" type="submit" data-i18n="credentials.submit">Preparar solicitud de acceso</button>
+        <p class="access-form-note" data-i18n="credentials.note">Se abrirá un borrador de correo que podrás revisar. Este formulario no crea cuentas ni emite credenciales automáticamente.</p>
+        <p class="access-feedback" id="credentials-feedback" role="status" aria-live="polite"></p>
+      </form>
+    </div>
   </dialog>
 
   <dialog class="dialog search-dialog" id="search-dialog" aria-labelledby="search-title">
