@@ -25,8 +25,14 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 22
-      - name: Validate HTML, CSS and JavaScript
+      - name: Install browser test runner
+        run: npm install --no-save --no-audit --no-fund playwright@1.52.0
+      - name: Install Chromium
+        run: npx playwright install --with-deps chromium
+      - name: Validate static HTML, CSS and JavaScript
         run: node scripts/validate-site.mjs
+      - name: Test responsive layouts and interactions
+        run: node scripts/test-responsive.mjs
 
   deploy:
     name: Deploy to GitHub Pages
