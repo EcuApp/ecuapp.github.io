@@ -1006,3 +1006,117 @@ h1, h2, h3, p {
     animation: none;
   }
 }
+
+
+/* Credential request dialog */
+.mobile-access-button {
+  display: none;
+}
+.access-form {
+  display: grid;
+  gap: 12px;
+  margin-top: 20px;
+}
+.access-form label {
+  display: grid;
+  gap: 5px;
+  color: var(--muted);
+  font-size: 11px;
+  font-weight: 700;
+}
+.access-form input,
+.access-form select,
+.access-form textarea {
+  width: 100%;
+  min-width: 0;
+  min-height: 44px;
+  padding: 10px 12px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  outline: none;
+  color: var(--ink);
+  background: var(--bg);
+  font-size: 14px;
+  transition: border-color .2s ease, box-shadow .2s ease;
+}
+.access-form input:focus,
+.access-form select:focus,
+.access-form textarea:focus {
+  border-color: var(--blue);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--blue) 16%, transparent);
+}
+.access-form textarea {
+  min-height: 100px;
+  resize: vertical;
+}
+.access-form .form-row {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+}
+.access-consent {
+  display: flex !important;
+  align-items: flex-start;
+  gap: 9px !important;
+  color: var(--muted) !important;
+  font-size: 10px !important;
+  font-weight: 400 !important;
+}
+.access-consent input {
+  width: 17px;
+  min-height: 17px;
+  height: 17px;
+  flex: 0 0 17px;
+  margin: 2px 0 0;
+  accent-color: var(--blue);
+}
+.access-form-note,
+.access-feedback {
+  margin: 0;
+  color: var(--soft);
+  font-size: 10px;
+}
+.access-feedback {
+  min-height: 16px;
+  color: var(--green);
+}
+.credentials-dialog .dialog-inner > p {
+  margin-bottom: 0;
+}
+.credentials-close {
+  position: sticky;
+  z-index: 2;
+  top: 8px;
+  float: right;
+  margin: 8px 8px -46px 0;
+  background: var(--surface-2);
+}
+.mobile-access-button {
+  justify-self: start;
+  margin: 8px 12px 2px;
+  padding: 9px 13px;
+  border: 1px solid var(--line);
+  border-radius: 9px;
+  color: var(--blue);
+  background: var(--blue-soft);
+  font-size: 12px;
+  font-weight: 700;
+}
+@media (max-width: 1024px) {
+  .mobile-access-button {
+    display: inline-flex;
+    align-items: center;
+  }
+}
+@media (max-width: 600px) {
+  .credentials-dialog {
+    width: calc(100vw - 20px);
+    max-height: calc(100dvh - 20px);
+  }
+  .credentials-dialog .dialog-inner {
+    padding: 19px 17px;
+  }
+  .access-form .form-row {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
