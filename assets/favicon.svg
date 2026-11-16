@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="EcuApp">
+  <rect width="64" height="64" rx="16" fill="#0d1a2b"/>
+  <path d="M5 45 25 15l9 12L45 8l14 37H5Z" fill="#f4c343"/>
+  <path d="m14 44 15-20 7 9 8-12 10 23H14Z" fill="#2877d7"/>
+  <path d="M5 45c13-2 21-9 30-18 7 8 13 14 24 18" fill="none" stroke="#fff" stroke-width="2.8" stroke-linecap="round"/>
+  <path d="M7 53c15-1 26-9 36-15 6 6 10 11 17 13" fill="none" stroke="#e54c57" stroke-width="3" stroke-linecap="round"/>
+</svg>
