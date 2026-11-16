@@ -124,7 +124,7 @@ try {
         heroCollisions: overlaps(heroParts),
         nodeCollisions: overlaps(nodeBoxes),
         productCollisions: overlaps(productBoxes),
-        outOfBounds: [...headerContent, ...nodeBoxes.flatMap(box => [box.left, box.right])].some(value => typeof value === "number" && Math.abs(value) > 100000)
+        headerWithinViewport: headerContent.left >= -1 && headerContent.right <= window.innerWidth + 1
       };
     });
 
@@ -176,7 +176,7 @@ try {
   assert.equal(await page.locator("#mobile-nav").evaluate(element => element.classList.contains("is-open")), true, "Mobile navigation did not open");
   await page.locator(".mobile-access-button").click();
   assert.equal(await page.locator("#credentials-dialog").evaluate(element => element.open), true, "Credential request dialog did not open");
-  assert.equal(await page.locator("#credentials-product option").count(), 11, "Credential form product selector was not populated");
+  assert.equal(await page.locator("#credentials-product option").count(), 12, "Credential form should include general inquiry plus all products");
   await page.locator(".credentials-close").click();
 
   // Mega-menu product links must open the matching product modal on desktop.
