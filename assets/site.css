@@ -1120,3 +1120,14 @@ h1, h2, h3, p {
     grid-template-columns: minmax(0, 1fr);
   }
 }
+
+@media (max-width: 420px) {
+  .search-open {
+    display: inline-grid;
+  }
+}
+@media (max-width: 300px) {
+  .search-open {
+    display: none;
+  }
+}
