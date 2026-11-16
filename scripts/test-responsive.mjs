@@ -57,7 +57,8 @@ const viewports = [
   { width: 768, height: 900 },
   { width: 900, height: 900 },
   { width: 1024, height: 900 },
-  { width: 1025, height: 900 },
+  { width: 1120, height: 900 },
+  { width: 1121, height: 900 },
   { width: 1280, height: 900 },
   { width: 1440, height: 1000 }
 ];
@@ -133,9 +134,10 @@ try {
     assert.ok(layout.documentWidth <= viewport.width + 1, "Horizontal document overflow at " + viewport.width + "px: " + layout.documentWidth);
     assert.ok(layout.bodyWidth <= viewport.width + 1, "Horizontal body overflow at " + viewport.width + "px: " + layout.bodyWidth);
     assert.ok(layout.header.left >= -1 && layout.header.right <= viewport.width + 1, "Header escapes viewport at " + viewport.width + "px");
+    assert.equal(layout.headerWithinViewport, true, "Header content overflows at " + viewport.width + "px");
     assert.deepEqual(layout.nodeCollisions, [], "Product nodes overlap at " + viewport.width + "px");
     assert.deepEqual(layout.productCollisions, [], "Product cards overlap at " + viewport.width + "px");
-    if (viewport.width <= 1024) {
+    if (viewport.width <= 1120) {
       assert.equal(layout.visualDisplay, "grid", "Tablet/mobile diagram should use grid at " + viewport.width + "px");
       assert.equal(layout.diagramNodePosition, "relative", "Tablet/mobile nodes must be in normal flow at " + viewport.width + "px");
       assert.deepEqual(layout.heroCollisions, [], "Hero diagram elements overlap at " + viewport.width + "px");
