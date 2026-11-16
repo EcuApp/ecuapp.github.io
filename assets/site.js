@@ -114,6 +114,36 @@
     'form.envDiscovery':'Discovery / consulting','form.envSandbox':'Evaluation / sandbox','form.envImplementation':'Implementation','form.envSupport':'Support / evolution'
   });
 
+
+  Object.assign(COPY.es, {
+    'credentials.eyebrow':'ACCESO CONTROLADO','credentials.title':'Solicita acceso a un producto EcuApp.',
+    'credentials.description':'Los entornos privados se habilitan después de validar la organización, el caso de uso y los permisos necesarios. Nunca compartas contraseñas ni tokens por correo.',
+    'credentials.email':'Correo corporativo','credentials.organization':'Organización','credentials.product':'Producto',
+    'credentials.role':'Perfil de acceso solicitado','credentials.roleEvaluation':'Evaluación técnica',
+    'credentials.roleDeveloper':'Desarrollador / integración','credentials.roleBusiness':'Usuario empresarial',
+    'credentials.rolePartner':'Socio / proveedor','credentials.purpose':'Propósito y alcance',
+    'credentials.purposePlaceholder':'Describe qué necesitas evaluar o integrar. No incluyas secretos.',
+    'credentials.consent':'Autorizo que EcuApp use estos datos para revisar y responder mi solicitud.',
+    'credentials.submit':'Preparar solicitud de acceso',
+    'credentials.note':'Se abrirá un borrador de correo que podrás revisar. Este formulario no crea cuentas ni emite credenciales automáticamente.',
+    'credentials.feedback':'Se preparará un correo para que lo revises y envíes.',
+    'theme.light':'Cambiar a tema claro','theme.dark':'Cambiar a tema oscuro','menu.open':'Abrir menú','menu.close':'Cerrar menú'
+  });
+  Object.assign(COPY.en, {
+    'credentials.eyebrow':'CONTROLLED ACCESS','credentials.title':'Request access to an EcuApp product.',
+    'credentials.description':'Private environments are enabled after the organization, use case and required permissions are reviewed. Never share passwords or tokens by email.',
+    'credentials.email':'Business email','credentials.organization':'Organization','credentials.product':'Product',
+    'credentials.role':'Requested access profile','credentials.roleEvaluation':'Technical evaluation',
+    'credentials.roleDeveloper':'Developer / integration','credentials.roleBusiness':'Business user',
+    'credentials.rolePartner':'Partner / provider','credentials.purpose':'Purpose and scope',
+    'credentials.purposePlaceholder':'Describe what you need to evaluate or integrate. Do not include secrets.',
+    'credentials.consent':'I authorize EcuApp to use this information to review and respond to my request.',
+    'credentials.submit':'Prepare access request',
+    'credentials.note':'An email draft will open for your review. This form does not create accounts or issue credentials automatically.',
+    'credentials.feedback':'An email draft will be prepared for you to review and send.',
+    'theme.light':'Switch to light theme','theme.dark':'Switch to dark theme','menu.open':'Open menu','menu.close':'Close menu'
+  });
+
   let language = 'es';
   let activeFilter = 'all';
   const $ = (selector, root=document) => root.querySelector(selector);
@@ -146,6 +176,10 @@
     document.documentElement.lang = language;
     const select = $('#language-select');
     if (select) select.value = language;
+    const themeButton = $('.theme-toggle');
+    if (themeButton) themeButton.setAttribute('aria-label', t(document.documentElement.dataset.theme === 'dark' ? 'theme.light' : 'theme.dark'));
+    const menuButton = $('.mobile-menu-toggle');
+    if (menuButton) menuButton.setAttribute('aria-label', t(menuButton.getAttribute('aria-expanded') === 'true' ? 'menu.close' : 'menu.open'));
     renderDiagram();
     renderProducts();
     fillProductSelect();
@@ -188,12 +222,14 @@
   }
 
   function fillProductSelect() {
-    const select = $('#request-product');
-    if (!select) return;
-    const current = select.value;
     const first = language === 'en' ? 'General inquiry' : 'Consulta general';
-    select.innerHTML = '<option value="General">' + first + '</option>' + PRODUCTS.map(p => '<option value="' + p.name + '">' + p.name + '</option>').join('');
-    if ([...select.options].some(option => option.value === current)) select.value = current;
+    ['#request-product', '#credentials-product'].forEach(selector => {
+      const select = $(selector);
+      if (!select) return;
+      const current = select.value;
+      select.innerHTML = '<option value="General">' + first + '</option>' + PRODUCTS.map(p => '<option value="' + p.name + '">' + p.name + '</option>').join('');
+      if ([...select.options].some(option => option.value === current)) select.value = current;
+    });
   }
 
   function openProduct(id, show=true) {
@@ -234,7 +270,7 @@
     document.addEventListener('click', event => {
       if (!event.target.closest('.nav-item')) closeMegaMenus();
     });
-    $('.mega-menu a').forEach(link => link.addEventListener('click', closeMegaMenus));
+    $$('.mega-menu a').forEach(link => link.addEventListener('click', closeMegaMenus));
     document.addEventListener('keydown', event => {
       if (event.key === 'Escape') closeMegaMenus();
     });
@@ -243,10 +279,12 @@
     menuButton?.addEventListener('click', () => {
       const open = mobile.classList.toggle('is-open');
       menuButton.setAttribute('aria-expanded', String(open));
+      menuButton.setAttribute('aria-label', t(open ? 'menu.close' : 'menu.open'));
     });
     $$('#mobile-nav a').forEach(link => link.addEventListener('click', () => {
       mobile.classList.remove('is-open');
       menuButton?.setAttribute('aria-expanded', 'false');
+      menuButton?.setAttribute('aria-label', t('menu.open'));
     }));
     window.addEventListener('resize', () => {
       if (window.innerWidth > 900) {
@@ -266,7 +304,7 @@
     function sync() {
       const dark = document.documentElement.dataset.theme === 'dark';
       if (glyph) glyph.textContent = dark ? '☾' : '☼';
-      button?.setAttribute('aria-label', dark ? 'Switch to light theme' : 'Switch to dark theme');
+      button?.setAttribute('aria-label', t(dark ? 'theme.light' : 'theme.dark'));
       $('meta[name="theme-color"]')?.setAttribute('content', dark ? '#07111f' : '#f3f6fb');
     }
     sync();
@@ -295,6 +333,18 @@
     searchDialog?.addEventListener('click', event => {
       if (event.target === searchDialog) searchDialog.close();
     });
+    const credentialsDialog = $('#credentials-dialog');
+    $('.credentials-close')?.addEventListener('click', () => credentialsDialog?.close());
+    credentialsDialog?.addEventListener('click', event => {
+      if (event.target === credentialsDialog) credentialsDialog.close();
+    });
+    $$('[data-open-credentials]').forEach(button => button.addEventListener('click', () => {
+      closeMegaMenus();
+      $('#mobile-nav')?.classList.remove('is-open');
+      $('.mobile-menu-toggle')?.setAttribute('aria-expanded', 'false');
+      renderTranslations();
+      if (credentialsDialog && !credentialsDialog.open) credentialsDialog.showModal();
+    }));
   }
 
   const SEARCH_PAGES = [
@@ -501,10 +551,39 @@
     }
   }
 
+
+  function setupCredentialRequests() {
+    const form = $('#credentials-form');
+    if (!form) return;
+    form.addEventListener('submit', event => {
+      event.preventDefault();
+      if (!form.reportValidity()) return;
+      const data = new FormData(form);
+      const subject = (language === 'en' ? 'Access request' : 'Solicitud de acceso') + ' — ' + data.get('product');
+      const body = [
+        'Email: ' + data.get('email'),
+        'Organization: ' + data.get('organization'),
+        'Product: ' + data.get('product'),
+        'Requested profile: ' + data.get('role'),
+        'Purpose and scope:',
+        data.get('purpose'),
+        '',
+        'Consent: yes',
+        'No passwords, API keys, private keys or access tokens are included.'
+      ].join('\n');
+      $('#credentials-feedback').textContent = t('credentials.feedback');
+      const mailto = 'mailto:ecuappmail@gmail.com?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
+      window.location.href = mailto;
+    });
+  }
+
   function setupProductEvents() {
     document.addEventListener('click', event => {
       const button = event.target.closest('[data-open-product]');
-      if (button) openProduct(button.dataset.openProduct);
+      if (button) {
+        if (button.tagName === 'A') event.preventDefault();
+        openProduct(button.dataset.openProduct);
+      }
     });
   }
 
@@ -518,6 +597,7 @@
     setupSearch();
     setupCodeExamples();
     setupRequestForm();
+    setupCredentialRequests();
     setupProductEvents();
     setupScrollEffects();
     $('#language-select')?.addEventListener('change', event => setLanguage(event.target.value));
