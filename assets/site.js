@@ -104,6 +104,16 @@
     'search.open':'Search EcuApp','theme.change':'Toggle theme','theme.light':'Switch to light theme','theme.dark':'Switch to dark theme'
   });
 
+
+  Object.assign(COPY.es, {
+    'status.footnote':'Los estados de proyecto no son indicadores de disponibilidad. No se publica uptime, telemetría, SLA o SLO sin un servicio desplegado y datos operativos verificables.',
+    'form.envDiscovery':'Exploración / asesoría','form.envSandbox':'Evaluación / sandbox','form.envImplementation':'Implementación','form.envSupport':'Soporte / evolución'
+  });
+  Object.assign(COPY.en, {
+    'status.footnote':'Project stages are not availability indicators. Uptime, telemetry, SLA or SLO are not published without a deployed service and verifiable operational data.',
+    'form.envDiscovery':'Discovery / consulting','form.envSandbox':'Evaluation / sandbox','form.envImplementation':'Implementation','form.envSupport':'Support / evolution'
+  });
+
   let language = 'es';
   let activeFilter = 'all';
   const $ = (selector, root=document) => root.querySelector(selector);
