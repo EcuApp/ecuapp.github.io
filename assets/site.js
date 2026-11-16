@@ -54,6 +54,7 @@
 
 
   Object.assign(COPY.es, {
+    'hero.titlePrefix':'La infraestructura digital para la','hero.titleHighlight':'evolución de tu empresa.',
     'mega.hefestoLabel':'ERP · Operación comercial','mega.peithoLabel':'ERP · CRM · Analítica','mega.heliosLabel':'Biometría · Visión','mega.tyrLabel':'Identidad · Confianza digital','mega.afroditaLabel':'Integración de canales','mega.mercurioLabel':'Tributario · Contable',
     'mega.platformTitle':'Ingeniería para conectar procesos.','mega.platformText':'Servicios modulares para crear, integrar y evolucionar tecnología.','mega.custom':'Software a medida','mega.customDesc':'Aplicaciones y sistemas','mega.apis':'APIs e integraciones','mega.apisDesc':'Servicios y datos conectados','mega.ai':'IA aplicada','mega.aiDesc':'Automatización con controles','mega.modern':'Modernización','mega.modernDesc':'Arquitectura y evolución','mega.status':'Estado del ecosistema','mega.statusDesc':'Madurez y transparencia','mega.statusLink':'Consultar estado',
     'hero.title':'La infraestructura digital para la evolución de tu empresa.','hero.copy':'Copiar ejemplo',
@@ -79,6 +80,7 @@
     'search.open':'Buscar en EcuApp','theme.change':'Cambiar tema','theme.light':'Cambiar a tema claro','theme.dark':'Cambiar a tema oscuro'
   });
   Object.assign(COPY.en, {
+    'hero.titlePrefix':'Digital infrastructure for your company’s','hero.titleHighlight':'evolution.',
     'mega.hefestoLabel':'ERP · Business operations','mega.peithoLabel':'ERP · CRM · Analytics','mega.heliosLabel':'Biometrics · Vision','mega.tyrLabel':'Identity · Digital trust','mega.afroditaLabel':'Channel integration','mega.mercurioLabel':'Tax · Accounting',
     'mega.platformTitle':'Engineering to connect operations.','mega.platformText':'Modular services to build, integrate and evolve technology.','mega.custom':'Custom software','mega.customDesc':'Applications and systems','mega.apis':'APIs and integrations','mega.apisDesc':'Connected services and data','mega.ai':'Applied AI','mega.aiDesc':'Automation with controls','mega.modern':'Modernization','mega.modernDesc':'Architecture and evolution','mega.status':'Ecosystem status','mega.statusDesc':'Maturity and transparency','mega.statusLink':'Check status',
     'hero.title':'Digital infrastructure for your company’s evolution.','hero.copy':'Copy example',
