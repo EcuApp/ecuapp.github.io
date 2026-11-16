@@ -1,5 +1,3 @@
-@import url('https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap');
-
 :root {
   color-scheme: light;
   --bg: #f3f6fb;
@@ -89,7 +87,7 @@ img { max-width: 100%; }
   background: transparent; font-size: 13px; font-weight: 600; cursor: pointer;
   transition: color .2s ease, background .2s ease;
 }
-.nav-link:hover, .nav-trigger:hover, .nav-trigger[aria-expanded="true"] { color: var(--ink); background: var(--surface-2); }
+.nav-link:hover, .nav-trigger:hover, .nav-trigger[aria-expanded="true"], .nav-link[aria-current="location"] { color: var(--ink); background: var(--surface-2); }
 .nav-chevron { color: var(--soft); font-size: 15px; transition: transform .2s ease; }
 .nav-trigger[aria-expanded="true"] .nav-chevron { transform: rotate(180deg); }
 .nav-item { position: relative; display: flex; align-items: center; height: 100%; }
@@ -160,7 +158,7 @@ html[data-theme="dark"] .gradient-text { background-image: linear-gradient(100de
 .hero-visual { position: relative; width: min(1120px, 100%); min-height: 485px; margin: 42px auto 0; }
 .hero-visual::before { position: absolute; inset: 4% 8% 3%; content: ""; border-radius: 50%; background: radial-gradient(ellipse, rgba(51, 129, 218, .16), transparent 68%); filter: blur(18px); }
 .network-grid-bg { position: absolute; inset: 0; overflow: hidden; opacity: .55; background-image: linear-gradient(30deg, transparent 49.6%, var(--line) 50%, transparent 50.4%), linear-gradient(150deg, transparent 49.6%, var(--line) 50%, transparent 50.4%); background-size: 64px 38px; mask-image: linear-gradient(to bottom, transparent, #000 18%, #000 82%, transparent); }
-.network-lines { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; }
+.network-lines { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; transform: translate3d(var(--pointer-x, 0), var(--pointer-y, 0), 0); transition: transform .22s ease-out; }
 .network-lines path { fill: none; stroke: var(--blue-2); stroke-width: 1.8; stroke-dasharray: 8 10; opacity: .58; animation: dash-flow 16s linear infinite; }
 .network-lines .line-gold { stroke: var(--gold); }
 .network-lines circle { fill: var(--cyan); filter: drop-shadow(0 0 7px var(--cyan)); }
@@ -245,6 +243,10 @@ html[data-theme="dark"] .gradient-text { background-image: linear-gradient(100de
 .product-card p { position: relative; z-index: 1; margin: 0 0 19px; color: var(--muted); font-size: 12px; line-height: 1.55; }
 .product-card-bottom { position: relative; z-index: 1; display: flex; align-items: center; justify-content: space-between; gap: 9px; margin-top: auto; padding-top: 13px; border-top: 1px solid var(--line); }
 .product-card-bottom small { color: var(--soft); font: 9px "DM Mono", monospace; }
+.product-repo-row { position: relative; z-index: 1; margin-top: 9px; }
+.product-repo { color: var(--blue); font-size: 10px; font-weight: 700; }
+.product-repo:hover { text-decoration: underline; text-underline-offset: 3px; }
+.small-print { color: var(--soft); font-size: 10px; }
 .product-detail-button { padding: 0; border: 0; color: var(--blue); background: transparent; font-size: 11px; font-weight: 800; cursor: pointer; }
 .product-detail-button:hover { text-decoration: underline; text-underline-offset: 3px; }
 .catalog-note { display: flex; gap: 9px; margin-top: 20px; padding: 13px 15px; border: 1px solid var(--line); border-radius: 12px; color: var(--muted); background: var(--surface-2); font-size: 10px; }
