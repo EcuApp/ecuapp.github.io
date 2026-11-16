@@ -58,7 +58,8 @@ const viewports = [
   { width: 900, height: 900 },
   { width: 1024, height: 900 },
   { width: 1120, height: 900 },
-  { width: 1121, height: 900 },
+  { width: 1150, height: 900 },
+  { width: 1151, height: 900 },
   { width: 1280, height: 900 },
   { width: 1440, height: 1000 }
 ];
@@ -138,7 +139,7 @@ try {
     assert.deepEqual(layout.nodeCollisions, [], "Product nodes overlap at " + viewport.width + "px");
     assert.deepEqual(layout.heroCollisions, [], "Hero diagram elements overlap at " + viewport.width + "px");
     assert.deepEqual(layout.productCollisions, [], "Product cards overlap at " + viewport.width + "px");
-    if (viewport.width <= 1120) {
+    if (viewport.width <= 1150) {
       assert.equal(layout.visualDisplay, "grid", "Tablet/mobile diagram should use grid at " + viewport.width + "px");
       assert.equal(layout.diagramNodePosition, "relative", "Tablet/mobile nodes must be in normal flow at " + viewport.width + "px");
     }
