@@ -10,6 +10,7 @@ const requiredFiles = [
   "assets/site.css",
   "assets/site.js",
   "assets/favicon.svg",
+  "scripts/test-responsive.mjs",
   ".nojekyll",
   "robots.txt",
   "sitemap.xml"
