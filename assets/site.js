@@ -52,6 +52,58 @@
     }
   };
 
+
+  Object.assign(COPY.es, {
+    'mega.hefestoLabel':'ERP · Operación comercial','mega.peithoLabel':'ERP · CRM · Analítica','mega.heliosLabel':'Biometría · Visión','mega.tyrLabel':'Identidad · Confianza digital','mega.afroditaLabel':'Integración de canales','mega.mercurioLabel':'Tributario · Contable',
+    'mega.platformTitle':'Ingeniería para conectar procesos.','mega.platformText':'Servicios modulares para crear, integrar y evolucionar tecnología.','mega.custom':'Software a medida','mega.customDesc':'Aplicaciones y sistemas','mega.apis':'APIs e integraciones','mega.apisDesc':'Servicios y datos conectados','mega.ai':'IA aplicada','mega.aiDesc':'Automatización con controles','mega.modern':'Modernización','mega.modernDesc':'Arquitectura y evolución','mega.status':'Estado del ecosistema','mega.statusDesc':'Madurez y transparencia','mega.statusLink':'Consultar estado',
+    'hero.title':'La infraestructura digital para la evolución de tu empresa.','hero.copy':'Copiar ejemplo',
+    'status.hefestoStage':'Desarrollo local','status.hefestoNote':'Pruebas locales documentadas; no desplegado. Integraciones comerciales pendientes.',
+    'status.peithoStage':'Alcance inicial','status.peithoNote':'Descripción funcional breve; alcance e integraciones por validar.',
+    'status.heliosStage':'Validación controlada','status.heliosNote':'No apto para producción; bloqueos legales, calibración y seguridad abiertos.',
+    'status.tyrStage':'Arquitectura','status.tyrNote':'Visión y arquitectura objetivo; escala no demostrada.',
+    'status.afroditaStage':'Base técnica','status.afroditaNote':'Contratos y adaptadores; runtime e integración real pendientes.',
+    'status.mercurioStage':'Por validar','status.mercurioNote':'Dirección definida en el prototipo; alcance técnico por confirmar.',
+    'status.fitnessStage':'Implementación inicial','status.fitnessNote':'Base frontend/API; funciones principales siguen en construcción.',
+    'status.mnemosineStage':'V1 implementada','status.mnemosineNote':'Validación integral y preparación para producción continúan.',
+    'status.pdfStage':'QA / release','status.pdfNote':'Validación final de flujos reales de firma pendiente.',
+    'status.cuspideStage':'En desarrollo','status.cuspideNote':'Madurez por confirmar con documentación actual del proyecto.',
+    'status.clinicaStage':'Base funcional','status.clinicaNote':'Calidad, accesibilidad y preparación operativa en evolución.',
+    'case.1a':'Frontend React/Vite y API Spring Boot sobre PostgreSQL.','case.1b':'Permisos por operación, negocio y sucursal.','case.1c':'Pruebas locales documentadas; no son mediciones de producción.',
+    'case.2a':'FastAPI, worker de análisis y consola Angular.','case.2b':'Pruebas con material sintético y voluntarios internos con consentimiento.','case.2c':'No habilitado para producción ni decisiones sobre personas reales.',
+    'case.3a':'Contratos y adaptadores intercambiables.','case.3b':'Aislamiento multi-tenant y resiliencia como criterios de diseño.','case.3c':'Runtime y pruebas reales aún pendientes.',
+    'case.4a':'Frontend React/TypeScript y API FastAPI separados.','case.4b':'Contratos versionados y consentimiento.','case.4c':'Funciones principales todavía en implementación.',
+    'pricing.1a':'Entendimiento del caso de uso','pricing.1b':'Revisión inicial de viabilidad','pricing.1c':'Recomendación de siguientes pasos',
+    'pricing.2a':'Alcance y entregables acordados','pricing.2b':'Hitos, validación y documentación','pricing.2c':'Plan de soporte según contrato',
+    'pricing.3a':'Backlog y prioridades compartidas','pricing.3b':'Mantenimiento y mejoras iterativas','pricing.3c':'Métricas acordadas según alcance',
+    'form.namePlaceholder':'Nombre y apellido','form.emailPlaceholder':'nombre@empresa.com','form.companyPlaceholder':'Empresa (opcional)','form.usecasePlaceholder':'¿Qué proceso quieres resolver? ¿Qué sistemas participan?',
+    'search.open':'Buscar en EcuApp','theme.change':'Cambiar tema','theme.light':'Cambiar a tema claro','theme.dark':'Cambiar a tema oscuro'
+  });
+  Object.assign(COPY.en, {
+    'mega.hefestoLabel':'ERP · Business operations','mega.peithoLabel':'ERP · CRM · Analytics','mega.heliosLabel':'Biometrics · Vision','mega.tyrLabel':'Identity · Digital trust','mega.afroditaLabel':'Channel integration','mega.mercurioLabel':'Tax · Accounting',
+    'mega.platformTitle':'Engineering to connect operations.','mega.platformText':'Modular services to build, integrate and evolve technology.','mega.custom':'Custom software','mega.customDesc':'Applications and systems','mega.apis':'APIs and integrations','mega.apisDesc':'Connected services and data','mega.ai':'Applied AI','mega.aiDesc':'Automation with controls','mega.modern':'Modernization','mega.modernDesc':'Architecture and evolution','mega.status':'Ecosystem status','mega.statusDesc':'Maturity and transparency','mega.statusLink':'Check status',
+    'hero.title':'Digital infrastructure for your company’s evolution.','hero.copy':'Copy example',
+    'status.hefestoStage':'Local development','status.hefestoNote':'Local tests documented; not deployed. Commercial integrations remain pending.',
+    'status.peithoStage':'Initial scope','status.peithoNote':'Brief functional description; scope and integrations require validation.',
+    'status.heliosStage':'Controlled validation','status.heliosNote':'Not production-ready; legal, calibration and security blockers remain.',
+    'status.tyrStage':'Architecture','status.tyrNote':'Vision and target architecture; scale is not demonstrated.',
+    'status.afroditaStage':'Technical foundation','status.afroditaNote':'Contracts and adapters; runtime and live integration remain pending.',
+    'status.mercurioStage':'To be validated','status.mercurioNote':'Direction appears in the prototype; technical scope needs confirmation.',
+    'status.fitnessStage':'Initial implementation','status.fitnessNote':'Frontend/API foundation; core features remain under development.',
+    'status.mnemosineStage':'V1 implemented','status.mnemosineNote':'End-to-end validation and production readiness remain in progress.',
+    'status.pdfStage':'QA / release','status.pdfNote':'Final validation of real signature workflows remains pending.',
+    'status.cuspideStage':'In development','status.cuspideNote':'Maturity needs confirmation against current project documentation.',
+    'status.clinicaStage':'Functional foundation','status.clinicaNote':'Quality, accessibility and operational readiness continue to evolve.',
+    'case.1a':'React/Vite frontend and Spring Boot API on PostgreSQL.','case.1b':'Permissions by operation, business and branch.','case.1c':'Local tests are documented; they are not production measurements.',
+    'case.2a':'FastAPI, analysis worker and Angular console.','case.2b':'Tests with synthetic material and consented internal volunteers.','case.2c':'Not production-ready and not for decisions about real people.',
+    'case.3a':'Interchangeable contracts and adapters.','case.3b':'Multi-tenant isolation and resilience as design criteria.','case.3c':'Runtime and real integration tests remain pending.',
+    'case.4a':'Separate React/TypeScript frontend and FastAPI API.','case.4b':'Versioned contracts and consent.','case.4c':'Core features remain under implementation.',
+    'pricing.1a':'Use-case discovery','pricing.1b':'Initial feasibility review','pricing.1c':'Recommended next steps',
+    'pricing.2a':'Agreed scope and deliverables','pricing.2b':'Milestones, validation and documentation','pricing.2c':'Support plan defined by contract',
+    'pricing.3a':'Shared backlog and priorities','pricing.3b':'Maintenance and iterative improvements','pricing.3c':'Metrics agreed for each scope',
+    'form.namePlaceholder':'First and last name','form.emailPlaceholder':'name@company.com','form.companyPlaceholder':'Company (optional)','form.usecasePlaceholder':'What process do you want to solve? Which systems are involved?',
+    'search.open':'Search EcuApp','theme.change':'Toggle theme','theme.light':'Switch to light theme','theme.dark':'Switch to dark theme'
+  });
+
   let language = 'es';
   let activeFilter = 'all';
   const $ = (selector, root=document) => root.querySelector(selector);
@@ -141,7 +193,7 @@
     dialog.dataset.product = id;
     const repo = product.repo ? '<a class="button button-outline" href="' + product.repo + '" target="_blank" rel="noopener noreferrer">' + t('modal.repo') + ' ↗</a>' : '<span class="small-print">' + t('modal.noRepo') + '</span>';
     $('#product-dialog-content').innerHTML =
-      '<span class="eyebrow">' + category(product) + '</span><h2>' + product.icon + ' ' + product.name + '</h2>' +
+      '<span class="eyebrow">' + category(product) + '</span><h2 id="product-dialog-title">' + product.icon + ' ' + product.name + '</h2>' +
       '<p>' + detail(product) + '</p><div class="dialog-meta"><span>' + t('modal.stage') + ': ' + stage(product) + '</span>' +
       product.tags.map(tag => '<span>' + tag + '</span>').join('') + '</div><div class="dialog-actions">' + repo +
       '<a class="button button-primary" href="#contacto" data-dialog-contact>' + t('modal.contact') + ' ↗</a></div>';
@@ -318,6 +370,11 @@
       } catch (_) {
         showToast(t('toast.copyError'));
       }
+    });
+    $('[data-copy-hero]')?.addEventListener('click', async () => {
+      const text = '{\n  "product": "Hefesto",\n  "environment": "sandbox",\n  "scope": ["inventory:read"]\n}';
+      try { await navigator.clipboard.writeText(text); showToast(t('toast.copied')); }
+      catch (_) { showToast(t('toast.copyError')); }
     });
   }
 
