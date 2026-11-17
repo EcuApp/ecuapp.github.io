@@ -5,6 +5,9 @@ import { extname, resolve, sep } from "node:path";
 import { chromium } from "playwright";
 
 const root = process.cwd();
+const publicHtml = readFileSync(resolve(root, "index.html"), "utf8");
+const publicJs = readFileSync(resolve(root, "assets/site.js"), "utf8");
+assert.doesNotMatch(publicHtml + publicJs, /github\\.com|repositori|repository/i, "Internal repository details must not ship in public source");
 const port = 4173;
 const mime = {
   ".html": "text/html; charset=utf-8",
@@ -48,20 +51,16 @@ let browser;
 const failures = [];
 const pageErrors = [];
 const viewports = [
-  { width: 320, height: 800 },
-  { width: 360, height: 800 },
-  { width: 375, height: 812 },
-  { width: 390, height: 844 },
-  { width: 430, height: 900 },
-  { width: 640, height: 900 },
-  { width: 768, height: 900 },
-  { width: 900, height: 900 },
-  { width: 1024, height: 900 },
-  { width: 1120, height: 900 },
-  { width: 1150, height: 900 },
-  { width: 1151, height: 900 },
-  { width: 1280, height: 900 },
-  { width: 1440, height: 1000 }
+  { width: 280, height: 760 }, { width: 300, height: 760 }, { width: 320, height: 800 },
+  { width: 344, height: 800 }, { width: 360, height: 800 }, { width: 375, height: 812 },
+  { width: 390, height: 844 }, { width: 414, height: 896 }, { width: 430, height: 900 },
+  { width: 480, height: 900 }, { width: 520, height: 900 }, { width: 600, height: 900 },
+  { width: 640, height: 900 }, { width: 641, height: 900 }, { width: 700, height: 900 },
+  { width: 701, height: 900 }, { width: 760, height: 900 }, { width: 768, height: 900 },
+  { width: 820, height: 900 }, { width: 900, height: 900 }, { width: 901, height: 900 },
+  { width: 1024, height: 900 }, { width: 1080, height: 900 }, { width: 1120, height: 900 },
+  { width: 1150, height: 900 }, { width: 1151, height: 900 }, { width: 1280, height: 900 },
+  { width: 1440, height: 1000 }, { width: 1920, height: 1080 }
 ];
 
 try {
@@ -123,6 +122,13 @@ try {
         nodeCount: nodes.length,
         visualDisplay: getComputedStyle(visual).display,
         diagramNodePosition: nodes[0] ? getComputedStyle(nodes[0]).position : "missing",
+        productColumns: getComputedStyle(document.querySelector("#product-grid")).gridTemplateColumns.split(" ").length,
+        serviceColumns: getComputedStyle(document.querySelector(".service-grid")).gridTemplateColumns.split(" ").length,
+        statusTableDisplay: getComputedStyle(document.querySelector(".status-table")).display,
+        mobileToggleDisplay: getComputedStyle(document.querySelector(".mobile-menu-toggle")).display,
+        desktopNavDisplay: getComputedStyle(document.querySelector(".desktop-nav")).display,
+        mobileAccessDisplay: getComputedStyle(document.querySelector(".mobile-access-button")).display,
+        statusLabels: [...document.querySelectorAll(".status-table tbody td")].filter(cell => cell.dataset.label).length,
         heroCollisions: overlaps(heroParts),
         nodeCollisions: overlaps(nodeBoxes),
         productCollisions: overlaps(productBoxes),
@@ -142,7 +148,19 @@ try {
     if (viewport.width <= 1150) {
       assert.equal(layout.visualDisplay, "grid", "Tablet/mobile diagram should use grid at " + viewport.width + "px");
       assert.equal(layout.diagramNodePosition, "relative", "Tablet/mobile nodes must be in normal flow at " + viewport.width + "px");
+      assert.equal(layout.desktopNavDisplay, "none", "Desktop navigation must yield to the mobile menu at " + viewport.width + "px");
+      assert.equal(layout.mobileToggleDisplay, "flex", "Mobile menu control missing at " + viewport.width + "px");
+      assert.equal(layout.mobileAccessDisplay, "inline-flex", "Access action missing from the mobile menu at " + viewport.width + "px");
+    } else {
+      assert.notEqual(layout.desktopNavDisplay, "none", "Desktop navigation should be visible above 1150px");
     }
+    assert.equal(layout.productColumns, viewport.width <= 640 ? 1 : viewport.width <= 900 ? 2 : 3,
+      "Unexpected product grid columns at " + viewport.width + "px: " + layout.productColumns);
+    assert.equal(layout.serviceColumns, viewport.width <= 640 ? 1 : viewport.width <= 900 ? 2 : 3,
+      "Unexpected service grid columns at " + viewport.width + "px: " + layout.serviceColumns);
+    assert.equal(layout.statusTableDisplay, viewport.width <= 700 ? "block" : "table",
+      "Status table should become stacked cards on small screens at " + viewport.width + "px");
+    assert.equal(layout.statusLabels, 33, "Responsive table labels are missing or stale at " + viewport.width + "px");
     console.log("Responsive viewport OK:", viewport.width + "x" + viewport.height);
   }
 
@@ -158,8 +176,10 @@ try {
 
   await page.locator("#language-select").selectOption("en");
   assert.match(await page.locator("#hero-title").innerText(), /Digital infrastructure/i, "English translation did not update");
+  assert.equal(await page.locator(".status-table tbody td").first().getAttribute("data-label"), "Product", "Responsive table labels did not translate to English");
   await page.locator("#language-select").selectOption("es");
   assert.match(await page.locator("#hero-title").innerText(), /infraestructura digital/i, "Spanish translation did not restore");
+  assert.equal(await page.locator(".status-table tbody td").first().getAttribute("data-label"), "Producto", "Responsive table labels did not restore to Spanish");
 
   await page.locator('[data-filter="business"]').click();
   assert.equal(await page.locator("#product-grid .product-card").count(), 5, "Business filter should show five products");
@@ -173,14 +193,34 @@ try {
   await page.locator("#search-results .search-result").click();
   assert.equal(await page.locator("#product-dialog").evaluate(element => element.open), true, "Search result did not open product detail");
   assert.match(await page.locator("#product-dialog-content").innerText(), /Helios/, "Wrong product detail opened");
+  assert.doesNotMatch(await page.locator("#product-dialog-content").innerText(), /github|repositorio|repository/i, "Internal source details must not appear in the public product modal");
   await page.locator(".dialog-close").click();
 
   await page.locator(".mobile-menu-toggle").click();
   assert.equal(await page.locator("#mobile-nav").evaluate(element => element.classList.contains("is-open")), true, "Mobile navigation did not open");
   await page.locator(".mobile-access-button").click();
+  assert.equal(await page.locator("#mobile-nav").evaluate(element => element.classList.contains("is-open")), false, "Mobile navigation should close when opening access");
   assert.equal(await page.locator("#credentials-dialog").evaluate(element => element.open), true, "Credential request dialog did not open");
   assert.equal(await page.locator("#credentials-product option").count(), 12, "Credential form should include general inquiry plus all products");
   await page.locator(".credentials-close").click();
+
+  // Tablet menu behavior and visibility of the access action above 900px.
+  await page.setViewportSize({ width: 1024, height: 900 });
+  await page.goto("http://127.0.0.1:" + port + "/", { waitUntil: "load" });
+  await page.locator(".mobile-menu-toggle").click();
+  assert.equal(await page.locator("#mobile-nav").evaluate(element => element.classList.contains("is-open")), true, "Tablet navigation did not open at 1024px");
+  assert.equal(await page.locator(".mobile-access-button").isVisible(), true, "Access action is missing in the tablet menu");
+  await page.locator(".mobile-access-button").click();
+  assert.equal(await page.locator("#mobile-nav").evaluate(element => element.classList.contains("is-open")), false, "Tablet navigation did not close after selecting access");
+  assert.equal(await page.locator("#credentials-dialog").evaluate(element => element.open), true, "Tablet access action did not open the request dialog");
+  await page.locator(".credentials-close").click();
+
+  const publicSurface = await page.evaluate(() => ({
+    githubLinks: [...document.querySelectorAll('a[href*="github.com"]')].length,
+    sourceMentions: /github|repositori|repository/i.test(document.body.innerText)
+  }));
+  assert.equal(publicSurface.githubLinks, 0, "Public pages must not link to internal repositories");
+  assert.equal(publicSurface.sourceMentions, false, "Public pages must not mention internal repository sources");
 
   // Mega-menu product links must open the matching product modal on desktop.
   await page.setViewportSize({ width: 1280, height: 900 });
@@ -190,6 +230,7 @@ try {
   await page.locator('.mega-menu [data-open-product="hefesto"]').click();
   assert.equal(await page.locator("#product-dialog").evaluate(element => element.open), true, "Mega-menu product link did not open detail");
   assert.match(await page.locator("#product-dialog-content").innerText(), /Hefesto/, "Mega-menu opened the wrong product");
+  assert.doesNotMatch(await page.locator("#product-dialog-content").innerText(), /github|repositorio|repository/i, "Product detail exposed internal source data");
   await page.locator(".dialog-close").click();
 
   // Visual system smoke tests: transitions, ambient animations and pointer polish.
