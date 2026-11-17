@@ -132,6 +132,8 @@ try {
         desktopNavDisplay: getComputedStyle(document.querySelector(".desktop-nav")).display,
         mobileAccessDisplay: getComputedStyle(document.querySelector(".mobile-access-button")).display,
         heroCodePanel: rect(document.querySelector(".hero-code-panel")),
+        heroCodeCopy: rect(document.querySelector(".hero-code-panel .code-copy")),
+        heroCodeHeaderText: rect(document.querySelector(".hero-code-panel .code-panel-top > span:nth-child(2)")),
         contactColumns: getComputedStyle(document.querySelector(".contact-band")).gridTemplateColumns.split(" ").length,
         revealCount: document.querySelectorAll(".reveal").length,
         visibleRevealCount: [...document.querySelectorAll(".reveal")].filter(element => element.classList.contains("is-visible")).length,
@@ -146,11 +148,17 @@ try {
     assert.equal(layout.productCount, 11, "Expected 11 rendered products at " + viewport.width + "px");
     assert.equal(layout.nodeCount, 7, "Expected 7 ecosystem nodes at " + viewport.width + "px");
     assert.ok(layout.documentWidth <= viewport.width + 1, "Horizontal document overflow at " + viewport.width + "px: " + layout.documentWidth);
+    if (viewport.width <= 700) assert.ok(layout.documentWidth <= viewport.width, "Small-screen document must not scroll horizontally at " + viewport.width + "px");
     assert.ok(layout.bodyWidth <= viewport.width + 1, "Horizontal body overflow at " + viewport.width + "px: " + layout.bodyWidth);
     assert.ok(layout.header.left >= -1 && layout.header.right <= viewport.width + 1, "Header escapes viewport at " + viewport.width + "px");
     assert.equal(layout.headerWithinViewport, true, "Header content overflows at " + viewport.width + "px");
     assert.ok(layout.heroCodePanel.left >= -1 && layout.heroCodePanel.right <= viewport.width + 1,
       "Hero code panel escapes viewport at " + viewport.width + "px: " + JSON.stringify(layout.heroCodePanel));
+    const codeHeaderOverlap = layout.heroCodeCopy.left < layout.heroCodeHeaderText.right - 1 &&
+      layout.heroCodeCopy.right > layout.heroCodeHeaderText.left + 1 &&
+      layout.heroCodeCopy.top < layout.heroCodeHeaderText.bottom - 1 &&
+      layout.heroCodeCopy.bottom > layout.heroCodeHeaderText.top + 1;
+    assert.equal(codeHeaderOverlap, false, "Hero code copy button overlaps its header at " + viewport.width + "px");
     if (viewport.width <= 700) assert.equal(layout.contactColumns, 1, "Contact block must stack into one column at " + viewport.width + "px");
     assert.ok(layout.revealCount >= 30, "Reveal targets were not initialized at " + viewport.width + "px");
     assert.deepEqual(layout.nodeCollisions, [], "Product nodes overlap at " + viewport.width + "px");
