@@ -182,11 +182,15 @@ try {
 
   // Every reveal target must become visible after a normal page scroll.
   await page.evaluate(async () => {
+    document.documentElement.style.scrollBehavior = "auto";
     const targets = [...document.querySelectorAll(".reveal")];
     for (const target of targets) {
       target.scrollIntoView({ block: "center", behavior: "auto" });
-      await new Promise(resolve => setTimeout(resolve, 55));
+      await new Promise(resolve => requestAnimationFrame(() => requestAnimationFrame(resolve)));
+      await new Promise(resolve => setTimeout(resolve, 100));
     }
+    window.scrollTo(0, document.documentElement.scrollHeight);
+    await new Promise(resolve => requestAnimationFrame(() => requestAnimationFrame(resolve)));
     window.scrollTo(0, 0);
   });
   await page.waitForFunction(() => [...document.querySelectorAll(".reveal")].every(element => element.classList.contains("is-visible")), { timeout: 6000 });
