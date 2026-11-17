@@ -164,9 +164,9 @@
   }
   function updateResponsiveTableLabels() {
     $$('.status-table').forEach(table => {
-      const labels = $('thead th', table).map(header => header.textContent.trim());
+      const labels = $$('thead th', table).map(header => header.textContent.trim());
       $$('tbody tr', table).forEach(row => {
-        $('td', row).forEach((cell, index) => { cell.dataset.label = labels[index] || ''; });
+        $$('td', row).forEach((cell, index) => { cell.dataset.label = labels[index] || ''; });
       });
     });
   }
