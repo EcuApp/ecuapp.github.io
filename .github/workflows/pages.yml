@@ -28,7 +28,7 @@ jobs:
       - name: Install browser test runner
         run: npm install --no-save --no-audit --no-fund playwright@1.52.0
       - name: Install Chromium
-        run: npx playwright install --with-deps chromium
+        run: npx playwright install chromium
       - name: Capture live public-site screenshots and layout metrics
         if: always()
         run: node scripts/audit-public-site.mjs
