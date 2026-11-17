@@ -28,7 +28,10 @@ const report = {
 let browser;
 
 try {
-  browser = await chromium.launch({ headless: true, args: ["--no-sandbox"] });
+  const launchOptions = { headless: true, args: ["--no-sandbox"] };
+  if (process.env.PUBLIC_AUDIT_BROWSER_CHANNEL) launchOptions.channel = process.env.PUBLIC_AUDIT_BROWSER_CHANNEL;
+  if (process.env.PUBLIC_AUDIT_BROWSER_EXECUTABLE) launchOptions.executablePath = process.env.PUBLIC_AUDIT_BROWSER_EXECUTABLE;
+  browser = await chromium.launch(launchOptions);
   const context = await browser.newContext({
     viewport: { width: 1440, height: 1000 },
     deviceScaleFactor: 1,
