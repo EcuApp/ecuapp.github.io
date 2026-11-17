@@ -131,6 +131,10 @@ try {
         mobileToggleDisplay: getComputedStyle(document.querySelector(".mobile-menu-toggle")).display,
         desktopNavDisplay: getComputedStyle(document.querySelector(".desktop-nav")).display,
         mobileAccessDisplay: getComputedStyle(document.querySelector(".mobile-access-button")).display,
+        heroCodePanel: rect(document.querySelector(".hero-code-panel")),
+        contactColumns: getComputedStyle(document.querySelector(".contact-band")).gridTemplateColumns.split(" ").length,
+        revealCount: document.querySelectorAll(".reveal").length,
+        visibleRevealCount: [...document.querySelectorAll(".reveal")].filter(element => element.classList.contains("is-visible")).length,
         statusLabels: [...document.querySelectorAll(".status-table tbody td")].filter(cell => cell.dataset.label).length,
         heroCollisions: overlaps(heroParts),
         nodeCollisions: overlaps(nodeBoxes),
@@ -145,6 +149,10 @@ try {
     assert.ok(layout.bodyWidth <= viewport.width + 1, "Horizontal body overflow at " + viewport.width + "px: " + layout.bodyWidth);
     assert.ok(layout.header.left >= -1 && layout.header.right <= viewport.width + 1, "Header escapes viewport at " + viewport.width + "px");
     assert.equal(layout.headerWithinViewport, true, "Header content overflows at " + viewport.width + "px");
+    assert.ok(layout.heroCodePanel.left >= -1 && layout.heroCodePanel.right <= viewport.width + 1,
+      "Hero code panel escapes viewport at " + viewport.width + "px: " + JSON.stringify(layout.heroCodePanel));
+    if (viewport.width <= 700) assert.equal(layout.contactColumns, 1, "Contact block must stack into one column at " + viewport.width + "px");
+    assert.ok(layout.revealCount >= 30, "Reveal targets were not initialized at " + viewport.width + "px");
     assert.deepEqual(layout.nodeCollisions, [], "Product nodes overlap at " + viewport.width + "px");
     assert.deepEqual(layout.heroCollisions, [], "Hero diagram elements overlap at " + viewport.width + "px");
     assert.deepEqual(layout.productCollisions, [], "Product cards overlap at " + viewport.width + "px");
@@ -171,6 +179,19 @@ try {
   await page.setViewportSize({ width: 390, height: 844 });
   await page.goto("http://127.0.0.1:" + port + "/", { waitUntil: "load" });
   await page.waitForFunction(() => document.querySelectorAll("#product-grid .product-card").length === 11);
+
+  // Every reveal target must become visible after a normal page scroll.
+  await page.evaluate(async () => {
+    const targets = [...document.querySelectorAll(".reveal")];
+    for (const target of targets) {
+      target.scrollIntoView({ block: "center", behavior: "auto" });
+      await new Promise(resolve => setTimeout(resolve, 55));
+    }
+    window.scrollTo(0, 0);
+  });
+  await page.waitForFunction(() => [...document.querySelectorAll(".reveal")].every(element => element.classList.contains("is-visible")), { timeout: 6000 });
+  const hiddenRevealCount = await page.evaluate(() => [...document.querySelectorAll(".reveal")].filter(element => Number(getComputedStyle(element).opacity) < 0.98).length);
+  assert.equal(hiddenRevealCount, 0, "Some page sections remain visually hidden after scrolling");
 
   await page.locator(".theme-toggle").click();
   assert.equal(await page.locator("html").getAttribute("data-theme"), "dark", "Theme toggle did not switch to dark");
