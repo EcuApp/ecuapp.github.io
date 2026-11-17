@@ -1615,7 +1615,7 @@ a:not(.button):not(.brand):not(.nav-link):not(.text-link):not(.product-repo):not
   --lift: 0px;
   position: relative;
   isolation: isolate;
-  transform: perspective(1100px) rotateX(var(--tilt-y)) rotateY(var(--tilt-x)) translateY(var(--lift));
+  transform: translateY(var(--lift));
   transition:
     transform 420ms var(--ease-out),
     border-color 300ms ease,
@@ -2088,7 +2088,7 @@ a:not(.button):not(.brand):not(.nav-link):not(.text-link):not(.product-repo):not
     opacity 760ms var(--ease-out),
     transform 760ms var(--ease-out),
     filter 760ms var(--ease-out);
-  will-change: opacity, transform, filter;
+  will-change: auto;
 }
 .reveal.is-visible {
   filter: blur(0);
@@ -2294,6 +2294,8 @@ html[data-theme="dark"] .status-table tbody tr:hover {
 .case-card.is-pointer-active,
 .pricing-card.is-pointer-active,
 .status-card.is-pointer-active {
+  transform: perspective(1100px) rotateX(var(--tilt-y)) rotateY(var(--tilt-x)) translateY(var(--lift));
+
   box-shadow: var(--shadow-hover);
 }
 .product-card.is-pointer-active::before,
