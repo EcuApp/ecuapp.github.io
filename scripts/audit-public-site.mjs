@@ -65,15 +65,30 @@ try {
     await page.waitForTimeout(180);
 
     // Visit each section so scroll-reveal content is captured in its final visible state.
-    await page.evaluate(async () => {
-      const step = Math.max(400, Math.floor(window.innerHeight * 0.72));
+    const scrollAudit = await page.evaluate(async () => {
+      document.documentElement.style.scrollBehavior = "auto";
+      const step = Math.max(300, Math.floor(window.innerHeight * 0.58));
+      const checkpoints = [];
       for (let y = 0; y < document.documentElement.scrollHeight; y += step) {
         window.scrollTo(0, y);
-        await new Promise(resolve => setTimeout(resolve, 70));
+        await new Promise(resolve => requestAnimationFrame(() => requestAnimationFrame(resolve)));
+        await new Promise(resolve => setTimeout(resolve, 160));
+        checkpoints.push({
+          requested: y,
+          actual: Math.round(window.scrollY),
+          visible: [...document.querySelectorAll(".reveal")].filter(element => element.classList.contains("is-visible")).length
+        });
       }
+      const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
+      window.scrollTo(0, maxScroll);
+      await new Promise(resolve => requestAnimationFrame(() => requestAnimationFrame(resolve)));
+      const visibleAtBottom = [...document.querySelectorAll(".reveal")].filter(element => element.classList.contains("is-visible")).length;
       window.scrollTo(0, 0);
+      await new Promise(resolve => requestAnimationFrame(() => requestAnimationFrame(resolve)));
+      return { checkpoints, maxScroll, finalScroll: Math.round(window.scrollY), visibleAtBottom };
     });
-    await page.waitForTimeout(450);
+    report.viewports.push({ viewport: { width: viewport.width, height: viewport.height }, scrollAudit });
+    await page.waitForTimeout(900);
     await page.evaluate(() => document.fonts?.ready);
 
     const metrics = await page.evaluate(() => {
