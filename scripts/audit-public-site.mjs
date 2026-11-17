@@ -74,7 +74,7 @@ try {
     await page.evaluate(() => document.fonts?.ready);
 
     const metrics = await page.evaluate(() => {
-      const clean = value => String(value || "").replace(/\\s+/g, " ").trim();
+      const clean = value => String(value || "").replace(/\s+/g, " ").trim();
       const rect = element => {
         const r = element.getBoundingClientRect();
         return {
