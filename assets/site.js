@@ -163,9 +163,9 @@
     try { window.localStorage.setItem(key, value); } catch (_) { /* Storage can be blocked. */ }
   }
   function updateResponsiveTableLabels() {
-    $('.status-table').forEach(table => {
+    $$('.status-table').forEach(table => {
       const labels = $('thead th', table).map(header => header.textContent.trim());
-      $('tbody tr', table).forEach(row => {
+      $$('tbody tr', table).forEach(row => {
         $('td', row).forEach((cell, index) => { cell.dataset.label = labels[index] || ''; });
       });
     });
@@ -296,7 +296,7 @@
       menuButton?.setAttribute('aria-expanded', 'false');
       menuButton?.setAttribute('aria-label', t('menu.open'));
     };
-    $('#mobile-nav a').forEach(link => link.addEventListener('click', closeMobileMenu));
+    $$('#mobile-nav a').forEach(link => link.addEventListener('click', closeMobileMenu));
     $('.mobile-access-button', mobile)?.addEventListener('click', closeMobileMenu);
     window.addEventListener('resize', () => {
       if (window.innerWidth > 1150) {
