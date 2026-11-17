@@ -479,8 +479,42 @@
 
   const motionOK = !window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   let revealObserver = null;
+  const pointerEnhancedElements = new WeakSet();
+  function setupPointerEnhancements(root = document) {
+    if (!motionOK || !window.matchMedia('(pointer:fine)').matches) return;
+    const cards = root.querySelectorAll('.product-card, .service-card, .case-card, .pricing-card, .status-card');
+    cards.forEach(card => {
+      if (pointerEnhancedElements.has(card)) return;
+      pointerEnhancedElements.add(card);
+      card.addEventListener('pointermove', event => {
+        if (event.pointerType === 'touch') return;
+        const rect = card.getBoundingClientRect();
+        if (!rect.width || !rect.height) return;
+        const x = Math.min(1, Math.max(0, (event.clientX - rect.left) / rect.width));
+        const y = Math.min(1, Math.max(0, (event.clientY - rect.top) / rect.height));
+        const tiltX = ((x - .5) * 3.2).toFixed(2);
+        const tiltY = ((.5 - y) * 2.4).toFixed(2);
+        card.style.setProperty('--spot-x', (x * 100).toFixed(1) + '%');
+        card.style.setProperty('--spot-y', (y * 100).toFixed(1) + '%');
+        card.style.setProperty('--tilt-x', tiltX + 'deg');
+        card.style.setProperty('--tilt-y', tiltY + 'deg');
+        card.classList.add('is-pointer-active');
+      });
+      card.addEventListener('pointerleave', () => {
+        card.style.setProperty('--tilt-x', '0deg');
+        card.style.setProperty('--tilt-y', '0deg');
+        card.classList.remove('is-pointer-active');
+      });
+      card.addEventListener('blur', () => {
+        card.style.setProperty('--tilt-x', '0deg');
+        card.style.setProperty('--tilt-y', '0deg');
+      }, true);
+    });
+  }
+
   function observeReveals() {
-    const elements = $$('.reveal:not([data-reveal-ready])');
+    setupPointerEnhancements(document);
+    const elements = $('.reveal:not([data-reveal-ready])');
     if (!elements.length) return;
     elements.forEach(element => element.dataset.revealReady = 'true');
     if (!('IntersectionObserver' in window) || !motionOK) {
@@ -511,6 +545,8 @@
       if (progress) progress.style.width = (max > 0 ? Math.min(100, scrollTop / max * 100) : 0) + '%';
       header?.classList.toggle('is-scrolled', scrollTop > 12);
       backTop?.classList.toggle('is-visible', scrollTop > 650);
+      const heroVisual = $('.hero-visual');
+      if (heroVisual && motionOK && scrollTop < 1000) heroVisual.style.setProperty('--hero-scroll', (-scrollTop * .035).toFixed(2) + 'px');
       scheduled = false;
     }
     window.addEventListener('scroll', () => {
