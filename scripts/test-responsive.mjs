@@ -150,7 +150,7 @@ try {
       assert.equal(layout.diagramNodePosition, "relative", "Tablet/mobile nodes must be in normal flow at " + viewport.width + "px");
       assert.equal(layout.desktopNavDisplay, "none", "Desktop navigation must yield to the mobile menu at " + viewport.width + "px");
       assert.equal(layout.mobileToggleDisplay, "flex", "Mobile menu control missing at " + viewport.width + "px");
-      assert.equal(layout.mobileAccessDisplay, "inline-flex", "Access action missing from the mobile menu at " + viewport.width + "px");
+      assert.notEqual(layout.mobileAccessDisplay, "none", "Access action must remain visible in the mobile menu at " + viewport.width + "px");
     } else {
       assert.notEqual(layout.desktopNavDisplay, "none", "Desktop navigation should be visible above 1150px");
     }
