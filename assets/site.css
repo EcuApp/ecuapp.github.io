@@ -2349,7 +2349,7 @@ html[data-theme="dark"] .trust-strip {
     transform: none;
   }
   .network-core::before {
-    inset: -16px;
+    inset: -4px;
   }
   .network-core::after {
     inset: -5px;
