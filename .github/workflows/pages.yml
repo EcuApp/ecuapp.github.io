@@ -11,13 +11,14 @@ permissions:
   id-token: write
 
 concurrency:
-  group: github-pages
+  group: ecuapp-site-build
   cancel-in-progress: true
 
 jobs:
   validate:
     name: Validate website
     runs-on: ubuntu-24.04
+    timeout-minutes: 15
     steps:
       - name: Checkout
         uses: actions/checkout@v4
