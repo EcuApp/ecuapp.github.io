@@ -28,8 +28,21 @@ jobs:
           node-version: 22
       - name: Install browser test runner
         run: npm install --no-save --no-audit --no-fund playwright@1.52.0
-      - name: Install Chromium
-        run: npx playwright install chromium
+      - name: Prepare browser for live audit and responsive tests
+        shell: bash
+        run: |
+          if command -v google-chrome >/dev/null 2>&1; then
+            echo "PUBLIC_AUDIT_BROWSER_CHANNEL=chrome" >> "$GITHUB_ENV"
+            google-chrome --version
+          elif command -v chromium >/dev/null 2>&1; then
+            echo "PUBLIC_AUDIT_BROWSER_EXECUTABLE=$(command -v chromium)" >> "$GITHUB_ENV"
+            chromium --version
+          elif command -v chromium-browser >/dev/null 2>&1; then
+            echo "PUBLIC_AUDIT_BROWSER_EXECUTABLE=$(command -v chromium-browser)" >> "$GITHUB_ENV"
+            chromium-browser --version
+          else
+            npx playwright install chromium
+          fi
       - name: Capture live public-site screenshots and layout metrics
         if: always()
         run: node scripts/audit-public-site.mjs
