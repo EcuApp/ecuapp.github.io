@@ -7,7 +7,7 @@ import { chromium } from "playwright";
 const root = process.cwd();
 const publicHtml = readFileSync(resolve(root, "index.html"), "utf8");
 const publicJs = readFileSync(resolve(root, "assets/site.js"), "utf8");
-assert.doesNotMatch(publicHtml + publicJs, /github\\.com|repositori|repository/i, "Internal repository details must not ship in public source");
+assert.doesNotMatch(publicHtml + publicJs, /github\.com|repositori|repository/i, "Internal repository details must not ship in public source");
 const port = 4173;
 const mime = {
   ".html": "text/html; charset=utf-8",
