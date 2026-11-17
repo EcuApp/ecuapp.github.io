@@ -2473,3 +2473,16 @@ html[data-theme="dark"] .trust-strip {
   .footer-main { gap: 22px 12px; }
   .dialog { width: calc(100vw - 20px); max-height: calc(100dvh - 20px); }
 }
+
+
+@media (max-width: 1150px) {
+  .mobile-nav.is-open > .mobile-access-button {
+    display: flex !important;
+    visibility: visible;
+    opacity: 1;
+    align-items: center;
+    justify-self: start;
+    min-height: 44px;
+    pointer-events: auto;
+  }
+}
