@@ -524,7 +524,7 @@
 
   function observeReveals() {
     setupPointerEnhancements(document);
-    const elements = $('.reveal:not([data-reveal-ready])');
+    const elements = $$('.reveal:not([data-reveal-ready])');
     if (!elements.length) return;
     elements.forEach(element => element.dataset.revealReady = 'true');
     if (!('IntersectionObserver' in window) || !motionOK) {
