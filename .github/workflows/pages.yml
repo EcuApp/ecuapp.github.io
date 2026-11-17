@@ -33,6 +33,17 @@ jobs:
         run: node scripts/validate-site.mjs
       - name: Test responsive layouts and interactions
         run: node scripts/test-responsive.mjs
+      - name: Capture live public-site screenshots and layout metrics
+        if: always()
+        run: node scripts/audit-public-site.mjs
+      - name: Upload public-site audit captures
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: public-site-audit-${{ github.run_number }}
+          path: artifacts/public-site-audit/
+          if-no-files-found: warn
+          retention-days: 7
 
   deploy:
     name: Deploy to GitHub Pages
