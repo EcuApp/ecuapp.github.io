@@ -209,6 +209,7 @@ try {
   await page.goto("http://127.0.0.1:" + port + "/", { waitUntil: "load" });
   await page.locator(".mobile-menu-toggle").click();
   assert.equal(await page.locator("#mobile-nav").evaluate(element => element.classList.contains("is-open")), true, "Tablet navigation did not open at 1024px");
+  await page.locator(".mobile-access-button").waitFor({ state: "visible", timeout: 1500 });
   assert.equal(await page.locator(".mobile-access-button").isVisible(), true, "Access action is missing in the tablet menu");
   await page.locator(".mobile-access-button").click();
   assert.equal(await page.locator("#mobile-nav").evaluate(element => element.classList.contains("is-open")), false, "Tablet navigation did not close after selecting access");
