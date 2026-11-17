@@ -190,6 +190,45 @@ try {
   await page.locator('.mega-menu [data-open-product="hefesto"]').click();
   assert.equal(await page.locator("#product-dialog").evaluate(element => element.open), true, "Mega-menu product link did not open detail");
   assert.match(await page.locator("#product-dialog-content").innerText(), /Hefesto/, "Mega-menu opened the wrong product");
+  await page.locator(".dialog-close").click();
+
+  // Visual system smoke tests: transitions, ambient animations and pointer polish.
+  const visualStyles = await page.evaluate(() => {
+    const headline = document.querySelector(".gradient-text");
+    const networkLine = document.querySelector(".network-lines path");
+    const productCard = document.querySelector("#product-grid .product-card");
+    const style = getComputedStyle(productCard);
+    return {
+      headlineAnimation: getComputedStyle(headline).animationName,
+      networkAnimation: getComputedStyle(networkLine).animationName,
+      cardTransition: style.transitionProperty,
+      heroKeyframe: getComputedStyle(document.querySelector(".hero-copy h1")).animationName,
+      focusOutline: getComputedStyle(document.querySelector(".search-open")).outlineStyle
+    };
+  });
+  assert.match(visualStyles.headlineAnimation, /gradient-flow/, "Animated gradient headline is missing");
+  assert.match(visualStyles.networkAnimation, /dash-flow/, "Animated network lines are missing");
+  assert.match(visualStyles.cardTransition, /transform/, "Product card transform transition is missing");
+  assert.match(visualStyles.heroKeyframe, /hero-copy-enter/, "Hero entrance animation is missing");
+
+  const firstCard = page.locator("#product-grid .product-card").first();
+  await firstCard.hover({ position: { x: 22, y: 30 } });
+  const pointerState = await firstCard.evaluate(element => ({
+    active: element.classList.contains("is-pointer-active"),
+    tiltX: element.style.getPropertyValue("--tilt-x"),
+    tiltY: element.style.getPropertyValue("--tilt-y"),
+    spotX: element.style.getPropertyValue("--spot-x")
+  }));
+  assert.equal(pointerState.active, true, "Pointer lighting interaction did not activate");
+  assert.notEqual(pointerState.tiltX, "0deg", "Pointer tilt did not respond to cursor position");
+  await page.mouse.move(4, 4);
+  await page.waitForTimeout(80);
+  assert.equal(await firstCard.evaluate(element => element.style.getPropertyValue("--tilt-x")), "0deg", "Pointer tilt did not reset on leave");
+
+  await page.emulateMedia({ reducedMotion: "reduce" });
+  const reducedMotionDuration = await page.locator(".gradient-text").evaluate(element => getComputedStyle(element).animationDuration);
+  assert.ok(parseFloat(reducedMotionDuration) <= 0.001, "Reduced-motion preference did not suppress animation");
+  await page.emulateMedia({ reducedMotion: "no-preference" });
 
   assert.deepEqual(pageErrors, [], "Browser reported runtime errors");
   console.log("Interactive smoke tests passed: theme, language, filters, live search, product dialog, mobile nav, credential request and mega-menu.");
