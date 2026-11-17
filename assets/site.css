@@ -2146,8 +2146,8 @@ a:not(.button):not(.brand):not(.nav-link):not(.text-link):not(.product-repo):not
   84% { transform: translateX(390%) skewX(-22deg); }
 }
 @keyframes code-panel-enter {
-  from { opacity: 0; transform: translate(50%, 13px); filter: blur(5px); }
-  to { opacity: 1; transform: translate(50%, 0); filter: blur(0); }
+  from { opacity: 0; filter: blur(5px); }
+  to { opacity: 1; filter: blur(0); }
 }
 @keyframes contact-rotate {
   to { transform: rotate(360deg); }
@@ -2231,5 +2231,141 @@ html[data-theme="dark"] .status-table tbody tr:hover {
   .hero::after,
   .contact-band::before {
     display: none;
+  }
+}
+
+
+/* Final motion refinements and responsive-safe transforms. */
+.hero-visual {
+  transform: translate3d(0, var(--hero-scroll, 0px), 0);
+  transition: transform 80ms linear;
+}
+.hero-visual::before {
+  transform: translate3d(calc(var(--pointer-x, 0px) * .24), calc(var(--pointer-y, 0px) * .24), 0);
+}
+.network-grid-bg {
+  transform: translate3d(calc(var(--pointer-x, 0px) * .28), calc(var(--pointer-y, 0px) * .28), 0);
+  transition: transform 260ms var(--ease-out);
+}
+.hero-code-panel {
+  will-change: opacity, filter;
+}
+#network-nodes .network-node {
+  animation: node-soft-enter 720ms var(--ease-out) both;
+}
+#network-nodes .network-node:nth-child(1) { animation-delay: 120ms; }
+#network-nodes .network-node:nth-child(2) { animation-delay: 190ms; }
+#network-nodes .network-node:nth-child(3) { animation-delay: 260ms; }
+#network-nodes .network-node:nth-child(4) { animation-delay: 330ms; }
+#network-nodes .network-node:nth-child(5) { animation-delay: 400ms; }
+#network-nodes .network-node:nth-child(6) { animation-delay: 470ms; }
+#network-nodes .network-node:nth-child(7) { animation-delay: 540ms; }
+@keyframes node-soft-enter {
+  from { opacity: 0; filter: blur(4px); }
+  to { opacity: 1; filter: blur(0); }
+}
+.scroll-progress {
+  box-shadow: 0 0 12px color-mix(in srgb, var(--cyan) 60%, transparent);
+}
+.scroll-progress::after {
+  position: absolute;
+  top: -2px;
+  right: 0;
+  bottom: -2px;
+  width: 60px;
+  content: "";
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,.7));
+  filter: blur(3px);
+}
+.button:active::before {
+  opacity: 1;
+}
+.button::before {
+  position: absolute;
+  z-index: -1;
+  inset: 0;
+  content: "";
+  opacity: 0;
+  background: radial-gradient(circle at 50% 50%, rgba(255,255,255,.2), transparent 64%);
+  transition: opacity 180ms ease;
+}
+.product-card.is-pointer-active,
+.service-card.is-pointer-active,
+.case-card.is-pointer-active,
+.pricing-card.is-pointer-active,
+.status-card.is-pointer-active {
+  box-shadow: var(--shadow-hover);
+}
+.product-card.is-pointer-active::before,
+.service-card.is-pointer-active::before,
+.case-card.is-pointer-active::before,
+.pricing-card.is-pointer-active::before,
+.status-card.is-pointer-active::before {
+  opacity: 1;
+}
+html[data-theme="dark"] .button-primary {
+  background: linear-gradient(115deg, #3d82e5 0%, #2c6acb 52%, #2259b8 100%);
+}
+html[data-theme="dark"] .button-primary:hover {
+  box-shadow: 0 14px 35px rgba(43, 111, 208, .34), inset 0 1px rgba(255,255,255,.2);
+}
+html[data-theme="dark"] .section-soft {
+  background:
+    radial-gradient(ellipse at 90% 12%, rgba(64, 137, 218, .075), transparent 34%),
+    linear-gradient(180deg, rgba(13, 26, 43, .92), var(--surface));
+}
+html[data-theme="dark"] .trust-strip {
+  background: linear-gradient(90deg, transparent, rgba(15, 35, 58, .56), transparent);
+}
+@media (max-width: 1150px) {
+  .hero-visual {
+    transform: none;
+  }
+}
+@media (max-width: 640px) {
+  .hero::after {
+    top: 0;
+    width: 108vw;
+    height: 440px;
+  }
+  .hero-copy > * {
+    animation-duration: 680ms;
+  }
+  .section-heading h2::after {
+    margin-top: 11px;
+  }
+  .reveal {
+    filter: none;
+    transform: translate3d(0, 16px, 0);
+  }
+  .reveal.is-visible {
+    transform: none;
+  }
+  .network-core::before {
+    inset: -16px;
+  }
+  .network-core::after {
+    inset: -5px;
+  }
+  .network-node,
+  .product-card,
+  .service-card,
+  .case-card,
+  .pricing-card,
+  .status-card {
+    -webkit-tap-highlight-color: transparent;
+  }
+}
+@media (hover: none), (pointer: coarse) {
+  .product-card:hover,
+  .service-card:hover,
+  .case-card:hover,
+  .pricing-card:hover,
+  .status-card:hover {
+    --lift: 0px;
+  }
+  .product-card:hover .product-logo,
+  .service-card:hover .service-icon {
+    transform: none;
   }
 }
