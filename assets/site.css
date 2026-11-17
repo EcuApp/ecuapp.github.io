@@ -2516,3 +2516,82 @@ html[data-theme="dark"] .trust-strip {
     transform: none;
   }
 }
+
+
+/* Final small-screen polish: prevent header collisions and tighten status rhythm. */
+.hero-code-panel .code-panel-top {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  align-items: center;
+  justify-content: initial;
+  gap: 8px;
+  padding-right: 96px;
+}
+.hero-code-panel .code-panel-top > span:nth-child(2) {
+  min-width: 0;
+  white-space: nowrap;
+}
+.hero-code-panel .code-panel-top > span:last-child {
+  display: none;
+}
+.hero-code-panel .code-copy {
+  top: 8px;
+  right: 10px;
+  max-width: 88px;
+  white-space: nowrap;
+  text-align: right;
+  font-size: 8px;
+}
+@media (max-width: 700px) {
+  html,
+  body {
+    max-width: 100%;
+    overflow-x: clip;
+  }
+  .status-table tbody tr {
+    padding: 9px 12px;
+  }
+  .status-table td,
+  .status-table td:first-child,
+  .status-table td:nth-child(2),
+  .status-table td:nth-child(3) {
+    padding: 6px 0;
+  }
+  .status-table td::before {
+    margin-bottom: 2px;
+    line-height: 1.25;
+  }
+  .status-table td:nth-child(2)::before,
+  .status-table td:nth-child(3)::before {
+    display: inline-block;
+    margin: 0 7px 0 0;
+    vertical-align: baseline;
+  }
+}
+@media (max-width: 420px) {
+  .hero-code-panel .code-panel-top {
+    gap: 6px;
+    padding-right: 88px;
+    font-size: 9px;
+  }
+  .hero-code-panel .code-copy {
+    max-width: 80px;
+    font-size: 7.5px;
+  }
+}
+@media (max-width: 350px) {
+  .network-core {
+    gap: 8px;
+    padding-inline: 9px;
+  }
+  .network-core strong {
+    font-size: 13px;
+  }
+  .network-core small {
+    font-size: 8px;
+  }
+  .core-emblem {
+    width: 38px;
+    height: 38px;
+  }
+}
