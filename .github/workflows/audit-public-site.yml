@@ -1,0 +1,52 @@
+name: Audit live EcuApp website
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ecuapp-live-public-audit
+  cancel-in-progress: true
+
+jobs:
+  capture:
+    name: Capture public website
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Install browser runner
+        run: npm install --no-save --no-audit --no-fund playwright@1.52.0
+      - name: Prepare browser
+        shell: bash
+        run: |
+          if command -v google-chrome >/dev/null 2>&1; then
+            echo "PUBLIC_AUDIT_BROWSER_CHANNEL=chrome" >> "$GITHUB_ENV"
+            google-chrome --version
+          elif command -v chromium >/dev/null 2>&1; then
+            echo "PUBLIC_AUDIT_BROWSER_EXECUTABLE=$(command -v chromium)" >> "$GITHUB_ENV"
+            chromium --version
+          elif command -v chromium-browser >/dev/null 2>&1; then
+            echo "PUBLIC_AUDIT_BROWSER_EXECUTABLE=$(command -v chromium-browser)" >> "$GITHUB_ENV"
+            chromium-browser --version
+          else
+            npx playwright install chromium
+          fi
+      - name: Capture public website screenshots and DOM metrics
+        run: node scripts/audit-public-site.mjs
+      - name: Upload public website audit
+        uses: actions/upload-artifact@v4
+        with:
+          name: public-site-audit-${{ github.run_number }}
+          path: artifacts/public-site-audit/
+          if-no-files-found: error
+          retention-days: 7
