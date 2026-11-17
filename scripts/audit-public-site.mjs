@@ -87,7 +87,6 @@ try {
       await new Promise(resolve => requestAnimationFrame(() => requestAnimationFrame(resolve)));
       return { checkpoints, maxScroll, finalScroll: Math.round(window.scrollY), visibleAtBottom };
     });
-    report.viewports.push({ viewport: { width: viewport.width, height: viewport.height }, scrollAudit });
     await page.waitForTimeout(900);
     await page.evaluate(() => document.fonts?.ready);
 
@@ -184,6 +183,7 @@ try {
         overflowElements
       };
     });
+    metrics.scrollAudit = scrollAudit;
 
     const screenshotPath = resolve(outputDir, viewport.name + ".png");
     await page.screenshot({
