@@ -2325,8 +2325,13 @@ html[data-theme="dark"] .trust-strip {
 @media (max-width: 640px) {
   .hero::after {
     top: 0;
-    width: 108vw;
+    left: 50%;
+    width: min(100vw, 440px);
     height: 440px;
+    transform: translateX(-50%);
+  }
+  .service-card {
+    overflow: hidden;
   }
   .hero-copy > * {
     animation-duration: 680ms;
