@@ -65,6 +65,9 @@ assert.match(js, /\$\$\('\.mega-menu a'\)\.forEach/, "Mega-menu links should be 
 assert.match(js, /setupCredentialRequests\(\)/, "Credential request flow was not initialized");
 assert.match(js, /function setupSearch\(\)/, "Global search initializer missing");
 assert.match(js, /function setupScrollEffects\(\)/, "Scroll effects initializer missing");
+assert.match(js, /const elements = \$\$\('\.reveal:not\(\[data-reveal-ready\]\)'\)/, "Reveal observer must collect every reveal target");
+assert.doesNotMatch(js, /const elements = \$\('\.reveal:not/, "Reveal observer must not use single-element querySelector");
+assert.match(css, /\.reveal\[data-reveal-ready=/, "Reveal animation must use progressive enhancement without hiding uninitialized content");
 
 // Responsive and accessibility guardrails.
 assert.match(css, /#network-nodes\s*\{[^}]*display:\s*grid/s, "Responsive product diagram grid missing");
