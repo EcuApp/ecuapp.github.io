@@ -89,6 +89,12 @@ try {
           bottom: Math.round(r.bottom * 10) / 10
         };
       };
+      const revealElements = [...document.querySelectorAll(".reveal")];
+      const revealState = {
+        total: revealElements.length,
+        visible: revealElements.filter(element => element.classList.contains("is-visible")).length,
+        rendered: revealElements.filter(element => Number(getComputedStyle(element).opacity) >= 0.98).length
+      };
       const sections = [...document.querySelectorAll("main > section")].map((section, index) => {
         const style = getComputedStyle(section);
         const heading = section.querySelector("h1,h2");
@@ -152,6 +158,12 @@ try {
         title: document.title,
         heading: clean(document.querySelector("h1")?.innerText),
         header: { rect: header ? rect(header) : null, elements: headerElements },
+        revealState,
+        heroCodePanel: document.querySelector(".hero-code-panel") ? {
+          rect: rect(document.querySelector(".hero-code-panel")),
+          position: getComputedStyle(document.querySelector(".hero-code-panel")).position,
+          transform: getComputedStyle(document.querySelector(".hero-code-panel")).transform
+        } : null,
         sections,
         cards,
         overflowElements
