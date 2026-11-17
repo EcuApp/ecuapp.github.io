@@ -1861,9 +1861,11 @@ a:not(.button):not(.brand):not(.nav-link):not(.text-link):not(.product-repo):not
 }
 
 /* Technical panels: deliberate terminal texture and tactile tabs. */
-.code-window,
-.hero-code-panel {
+.code-window {
   position: relative;
+  isolation: isolate;
+}
+.hero-code-panel {
   isolation: isolate;
 }
 .code-window::before {
@@ -2484,5 +2486,33 @@ html[data-theme="dark"] .trust-strip {
     justify-self: start;
     min-height: 44px;
     pointer-events: auto;
+  }
+}
+
+
+/* Progressive enhancement: content remains readable until reveal observation is ready. */
+.reveal {
+  opacity: 1;
+  filter: none;
+  transform: none;
+  transition: opacity 680ms var(--ease-out), transform 680ms var(--ease-out), filter 680ms var(--ease-out);
+}
+.reveal[data-reveal-ready="true"]:not(.is-visible) {
+  opacity: 0;
+  filter: blur(3px);
+  transform: translate3d(0, 18px, 0) scale(.99);
+}
+.reveal.is-visible {
+  opacity: 1;
+  filter: none;
+  transform: none;
+}
+@media (prefers-reduced-motion: reduce) {
+  .reveal,
+  .reveal[data-reveal-ready="true"]:not(.is-visible),
+  .reveal.is-visible {
+    opacity: 1;
+    filter: none;
+    transform: none;
   }
 }
