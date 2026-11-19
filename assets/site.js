@@ -15,6 +15,16 @@
     {id:'clinica',name:'Clínica Estándar',icon:'✚',group:'business',categoryEs:'HealthTech · gestión clínica',categoryEn:'HealthTech · clinic management',summaryEs:'Portal y sistema de gestión para clínicas, agenda y citas.',summaryEn:'Clinic portal and management system for schedules and appointments.',stageEs:'Base funcional en evolución',stageEn:'Functional foundation evolving',stage:'dev',detailEs:'El perfil institucional describe un portal web y sistema operativo para clínicas: información pública, especialidades, profesionales, reservas de citas, agenda y administración por roles. Continúan tareas de calidad, accesibilidad, pruebas y preparación operativa.',detailEn:'The organization profile describes a clinic portal and operating system: public information, specialties, professionals, appointment bookings, schedules and role-based administration. Quality, accessibility, testing and operational-readiness work remains.',tags:['HealthTech','Scheduling','Role-based access']}
   ];
 
+  const PRODUCT_ICON_NAMES = {
+    hefesto: 'grid', peitho: 'chart', helios: 'eye', tyr: 'shield', afrodita: 'link',
+    mercurio: 'receipt', fitness: 'pulse', mnemosine: 'spark', 'pdf-sign': 'file',
+    cuspide: 'building', clinica: 'heart'
+  };
+  function productIcon(product) {
+    const name = PRODUCT_ICON_NAMES[product.id] || 'grid';
+    return '<svg class="icon-svg" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="#icon-' + name + '"></use></svg>';
+  }
+
   const COPY = {
     es: {
       'nav.products':'Productos','nav.platforms':'Plataformas','nav.developers':'Desarrolladores','nav.docs':'Documentación','nav.pricing':'Precios',
@@ -116,6 +126,97 @@
     'form.envDiscovery':'Discovery / consulting','form.envSandbox':'Evaluation / sandbox','form.envImplementation':'Implementation','form.envSupport':'Support / evolution'
   });
 
+  Object.assign(COPY.es, {
+    'nav.integrations':'Integraciones','nav.company':'Empresa',
+    'hero.kicker':'SOFTWARE A MEDIDA · SISTEMAS CONECTADOS',
+    'hero.titlePrefix':'Software que encaja con tu empresa.','hero.titleHighlight':'Y conecta lo que ya existe.',
+    'hero.title':'Software que encaja con tu empresa. Y conecta lo que ya existe.',
+    'hero.subtitle':'Diseñamos software a medida, interfaces propias y APIs B2B. Conectamos tus sistemas actuales y, cuando aplica, exponemos capacidades con MCP para herramientas y agentes autorizados.',
+    'hero.primary':'Diseñar una solución','hero.secondary':'Ver cómo integramos sistemas',
+    'hero.meta1':'Software a medida','hero.meta2':'APIs B2B · MCP','hero.meta3':'Interfaces propias',
+    'hero.coreSub':'Engineering partner','hero.caption':'Productos propios y soluciones a medida pueden convivir dentro de una misma arquitectura.',
+    'mega.apis':'APIs B2B','mega.apisDesc':'Conexión sistema a sistema',
+    'mega.ai':'MCP e IA aplicada','mega.aiDesc':'Capacidades con permisos definidos',
+    'mega.modern':'Integración con lo existente','mega.modernDesc':'ERP, CRM y plataformas externas',
+    'solutions.title':'Construimos la pieza que tu operación necesita.',
+    'solutions.text':'Partimos de tus flujos, sistemas y restricciones. Combinamos interfaz, API, MCP y automatización donde tenga sentido.',
+    'service.1':'Software a medida','service.1d':'Aplicaciones y sistemas internos creados para tus procesos y reglas de negocio.',
+    'service.2':'Interfaces de trabajo','service.2d':'Portales y paneles propios para que tus equipos operen con claridad.',
+    'service.3':'APIs B2B','service.3d':'Contratos y servicios para intercambiar datos entre tus sistemas y los de tus socios.',
+    'service.4':'MCP e IA aplicada','service.4d':'Capacidades para herramientas y agentes autorizados, con permisos y alcance definidos.',
+    'service.5':'Integración de sistemas','service.5d':'Adaptadores para ERP, CRM, servicios internos y plataformas de terceros.',
+    'service.6':'Modernización y evolución','service.6d':'Mejoras graduales para mantener, ampliar y conectar la tecnología que ya utilizas.',
+    'story.eyebrow':'INTERFACES REALES · INGENIERÍA EN PROCESO',
+    'story.title':'Una interfaz propia hace que la operación cobre sentido.',
+    'story.text':'Estas vistas de Hefesto muestran cómo EcuApp convierte reglas de negocio en herramientas concretas. El mismo criterio se aplica al integrar sistemas propios y plataformas de terceros.',
+    'story.step1':'Un espacio claro para el equipo.','story.step1d':'Paneles y flujos que traducen el trabajo diario en una experiencia propia.',
+    'story.step2':'Cada proceso, con su contexto.','story.step2d':'Inventario, compras y ventas se conectan con las reglas de cada organización.',
+    'story.step3':'El sistema encaja en tu ecosistema.','story.step3d':'Podemos diseñar APIs B2B, conectores y MCP según la arquitectura y los permisos acordados.',
+    'story.gallery':'Capturas de desarrollo del sistema Hefesto',
+    'story.screen1':'Mapa de operaciones','story.screen2':'Control de inventario','story.screen3':'Conexiones y webhooks',
+    'story.note':'Capturas de Hefesto en desarrollo local. Son vistas de trabajo, no evidencia de un servicio en producción.',
+    'brand.eyebrow':'QUIÉNES SOMOS · ECUADOR',
+    'brand.title':'Ingeniería que entiende el contexto antes de construir.',
+    'brand.text':'EcuApp crea productos propios y acompaña a otras organizaciones a resolver necesidades reales con tecnología que se adapta a su entorno.',
+    'brand.mission':'Hacer que la tecnología responda a la operación real.',
+    'brand.missionText':'Diseñamos soluciones digitales útiles, seguras e interoperables para resolver procesos, conectar sistemas y evolucionar con claridad.',
+    'brand.vision':'Ser el socio de ingeniería que crece junto a cada empresa.',
+    'brand.visionText':'Queremos que las organizaciones de Ecuador y la región nos elijan para adaptar, conectar y hacer evolucionar su ecosistema digital.',
+    'brand.principlesLabel':'CÓMO TRABAJAMOS','brand.principles':'Ajuste al contexto · Interoperabilidad · Seguridad · Claridad',
+    'dev.eyebrow':'INGENIERÍA PARA SISTEMAS Y EQUIPOS',
+    'dev.title':'Conecta personas, sistemas y agentes.',
+    'dev.text':'Diseñamos APIs B2B, MCP e integraciones alrededor de tu arquitectura, tus permisos y tu operación. Las muestras son conceptuales; no representan endpoints ni servicios activos.',
+    'dev.b1':'Contratos y versiones explícitas','dev.b2':'Permisos definidos por caso de uso','dev.b3':'Interfaces que conviven con tus sistemas',
+    'dev.docs':'Diseñar una integración','dev.sample':'Ejemplo conceptual · no es un servicio activo',
+    'dev.tabApi':'API B2B','dev.tabMcp':'MCP','dev.tabInterface':'Interfaz',
+    'footer.tagline':'Ingeniería que se adapta a tu operación.'
+  });
+  Object.assign(COPY.en, {
+    'nav.integrations':'Integrations','nav.company':'Company',
+    'hero.kicker':'CUSTOM SOFTWARE · CONNECTED SYSTEMS',
+    'hero.titlePrefix':'Software that fits your business.','hero.titleHighlight':'And connects what already works.',
+    'hero.title':'Software that fits your business. And connects what already works.',
+    'hero.subtitle':'We design custom software, purpose-built interfaces and B2B APIs. We connect your current systems and, when it makes sense, expose capabilities through MCP for authorized tools and agents.',
+    'hero.primary':'Design a solution','hero.secondary':'See how we connect systems',
+    'hero.meta1':'Custom software','hero.meta2':'B2B APIs · MCP','hero.meta3':'Purpose-built interfaces',
+    'hero.coreSub':'Engineering partner','hero.caption':'EcuApp products and custom solutions can work together in one architecture.',
+    'mega.apis':'B2B APIs','mega.apisDesc':'System-to-system connections',
+    'mega.ai':'MCP and applied AI','mega.aiDesc':'Capabilities with defined permissions',
+    'mega.modern':'Integration with existing systems','mega.modernDesc':'ERP, CRM and third-party platforms',
+    'solutions.title':'We build the piece your operations need.',
+    'solutions.text':'We start with your workflows, systems and constraints. We combine interfaces, APIs, MCP and automation where they make sense.',
+    'service.1':'Custom software','service.1d':'Applications and internal systems built around your processes and business rules.',
+    'service.2':'Operational interfaces','service.2d':'Purpose-built portals and dashboards that help your teams work clearly.',
+    'service.3':'B2B APIs','service.3d':'Contracts and services for exchanging data across your systems and partners.',
+    'service.4':'MCP and applied AI','service.4d':'Capabilities for authorized tools and agents, with defined scope and permissions.',
+    'service.5':'System integration','service.5d':'Adapters for ERP, CRM, internal services and third-party platforms.',
+    'service.6':'Modernization and evolution','service.6d':'Incremental improvements that maintain, extend and connect the technology you already use.',
+    'story.eyebrow':'REAL INTERFACES · ENGINEERING IN PROGRESS',
+    'story.title':'A purpose-built interface gives operations a clearer shape.',
+    'story.text':'These Hefesto screens show how EcuApp turns business rules into practical tools. We apply the same care when connecting existing systems and third-party platforms.',
+    'story.step1':'A clear workspace for the team.','story.step1d':'Dashboards and flows that translate daily work into a purpose-built experience.',
+    'story.step2':'Every process, with its context.','story.step2d':'Inventory, purchasing and sales follow each organization’s rules.',
+    'story.step3':'Software that fits your ecosystem.','story.step3d':'We can design B2B APIs, connectors and MCP around the agreed architecture and permissions.',
+    'story.gallery':'Hefesto development screenshots',
+    'story.screen1':'Operations map','story.screen2':'Inventory controls','story.screen3':'Connections and webhooks',
+    'story.note':'Hefesto screenshots from local development. They show work in progress, not a production service.',
+    'brand.eyebrow':'WHO WE ARE · ECUADOR',
+    'brand.title':'Engineering that understands the context before building.',
+    'brand.text':'EcuApp creates its own products and helps other organizations solve real needs with technology that fits their environment.',
+    'brand.mission':'Make technology respond to real operations.',
+    'brand.missionText':'We design useful, secure and interoperable digital solutions to improve processes, connect systems and evolve with clarity.',
+    'brand.vision':'Be the engineering partner that grows with every business.',
+    'brand.visionText':'We want organizations across Ecuador and the region to choose us to adapt, connect and evolve their digital ecosystem.',
+    'brand.principlesLabel':'HOW WE WORK','brand.principles':'Context fit · Interoperability · Security · Clarity',
+    'dev.eyebrow':'ENGINEERING FOR SYSTEMS AND TEAMS',
+    'dev.title':'Connect people, systems and agents.',
+    'dev.text':'We design B2B APIs, MCP and integrations around your architecture, permissions and operations. The samples are conceptual; they do not represent active endpoints or services.',
+    'dev.b1':'Explicit contracts and versions','dev.b2':'Permissions scoped to each use case','dev.b3':'Interfaces that work alongside your systems',
+    'dev.docs':'Design an integration','dev.sample':'Conceptual example · not an active service',
+    'dev.tabApi':'B2B API','dev.tabMcp':'MCP','dev.tabInterface':'Interface',
+    'footer.tagline':'Engineering that adapts to your operations.'
+  });
+
 
   Object.assign(COPY.es, {
     'credentials.eyebrow':'ACCESO CONTROLADO','credentials.title':'Solicita acceso a un producto EcuApp.',
@@ -206,7 +307,7 @@
 
   function productCard(product) {
     return '<article class="product-card reveal" data-category="' + product.group + '">' +
-      '<div class="product-card-top"><span class="product-logo" aria-hidden="true">' + product.icon + '</span><span class="stage-pill stage-' + product.stage + '">' + stage(product) + '</span></div>' +
+      '<div class="product-card-top"><span class="product-logo" aria-hidden="true">' + productIcon(product) + '</span><span class="stage-pill stage-' + product.stage + '">' + stage(product) + '</span></div>' +
       '<span class="product-category">' + category(product) + '</span><h3>' + product.name + '</h3><p>' + summary(product) + '</p>' +
       '<div class="product-card-bottom"><small>' + product.tags.slice(0,3).join(' · ') + '</small><button class="product-detail-button" type="button" data-open-product="' + product.id + '">' + t('details') + ' ↗</button></div>' +
       '</article>';
@@ -217,7 +318,7 @@
     if (!target) return;
     target.innerHTML = PRODUCTS.slice(0, 7).map(product =>
       '<button class="network-node node-' + product.id + '" type="button" data-open-product="' + product.id + '" aria-label="' + product.name + ': ' + summary(product) + '">' +
-      '<span class="node-icon" aria-hidden="true">' + product.icon + '</span><span><b>' + product.name + '</b><small>' + category(product) + '</small></span></button>'
+      '<span class="node-icon" aria-hidden="true">' + productIcon(product) + '</span><span><b>' + product.name + '</b><small>' + category(product) + '</small></span></button>'
     ).join('');
   }
 
@@ -238,7 +339,13 @@
       const select = $(selector);
       if (!select) return;
       const current = select.value;
-      select.innerHTML = '<option value="General">' + first + '</option>' + PRODUCTS.map(p => '<option value="' + p.name + '">' + p.name + '</option>').join('');
+      const services = selector === '#request-product' ? (language === 'en' ? [
+        ['custom-software','Custom software'],['b2b-api','B2B API'],['system-integration','System integration'],['mcp-ai','MCP and applied AI'],['custom-interface','Purpose-built interface'],['modernization','Modernization']
+      ] : [
+        ['custom-software','Software a medida'],['b2b-api','API B2B'],['system-integration','Integración de sistemas'],['mcp-ai','MCP e IA aplicada'],['custom-interface','Interfaz propia'],['modernization','Modernización']
+      ]) : [];
+      const serviceHtml = services.length ? '<optgroup label="' + (language === 'en' ? 'Services' : 'Servicios') + '">' + services.map(item => '<option value="' + item[0] + '">' + item[1] + '</option>').join('') + '</optgroup>' : '';
+      select.innerHTML = '<option value="General">' + first + '</option>' + serviceHtml + '<optgroup label="' + (language === 'en' ? 'EcuApp products' : 'Productos EcuApp') + '">' + PRODUCTS.map(p => '<option value="' + p.name + '">' + p.name + '</option>').join('') + '</optgroup>';
       if ([...select.options].some(option => option.value === current)) select.value = current;
     });
   }
@@ -249,7 +356,7 @@
     if (!product || !dialog) return;
     dialog.dataset.product = id;
     $('#product-dialog-content').innerHTML =
-      '<span class="eyebrow">' + category(product) + '</span><h2 id="product-dialog-title">' + product.icon + ' ' + product.name + '</h2>' +
+      '<span class="eyebrow">' + category(product) + '</span><h2 id="product-dialog-title"><span class="product-dialog-icon">' + productIcon(product) + '</span>' + product.name + '</h2>' +
       '<p>' + detail(product) + '</p><div class="dialog-meta"><span>' + t('modal.stage') + ': ' + stage(product) + '</span>' +
       product.tags.map(tag => '<span>' + tag + '</span>').join('') + '</div><div class="dialog-actions">' +
       '<a class="button button-primary" href="#contacto" data-dialog-contact>' + t('modal.contact') + ' ↗</a></div>';
@@ -317,7 +424,7 @@
       const dark = document.documentElement.dataset.theme === 'dark';
       if (glyph) glyph.textContent = dark ? '☾' : '☼';
       button?.setAttribute('aria-label', t(dark ? 'theme.light' : 'theme.dark'));
-      $('meta[name="theme-color"]')?.setAttribute('content', dark ? '#07111f' : '#f3f6fb');
+      $('meta[name="theme-color"]')?.setAttribute('content', dark ? '#07172e' : '#f7f4ea');
     }
     sync();
     button?.addEventListener('click', () => {
@@ -361,7 +468,8 @@
 
   const SEARCH_PAGES = [
     {titleEs:'Productos y ecosistema',titleEn:'Products and ecosystem',descriptionEs:'Catálogo, productos y etapas documentadas',descriptionEn:'Catalog, products and documented stages',href:'#ecosistema',keywords:'productos producto ERP CRM software'},
-    {titleEs:'Plataformas y servicios',titleEn:'Platforms and services',descriptionEs:'Software a medida, APIs e inteligencia artificial',descriptionEn:'Custom software, APIs and applied AI',href:'#soluciones',keywords:'plataformas servicios APIs inteligencia artificial'},
+    {titleEs:'Plataformas y servicios',titleEn:'Platforms and services',descriptionEs:'Software a medida, APIs B2B, MCP e interfaces',descriptionEn:'Custom software, B2B APIs, MCP and interfaces',href:'#soluciones',keywords:'plataformas servicios software APIs MCP interfaces'},
+    {titleEs:'Integraciones',titleEn:'Integrations',descriptionEs:'Conectores para sistemas existentes, APIs B2B y MCP',descriptionEn:'Connectors for existing systems, B2B APIs and MCP',href:'#integraciones',keywords:'integraciones ERP CRM MCP APIs conexiones'},
     {titleEs:'Centro para desarrolladores',titleEn:'Developer center',descriptionEs:'Contratos, seguridad y solicitud de evaluación',descriptionEn:'Contracts, security and evaluation requests',href:'#desarrolladores',keywords:'developers docs documentación credenciales'},
     {titleEs:'Estado del ecosistema',titleEn:'Ecosystem status',descriptionEs:'Madurez, SLA y transparencia operativa',descriptionEn:'Maturity, SLA and operational transparency',href:'#estado',keywords:'estado SLA SLO uptime incidentes'},
     {titleEs:'Casos de ingeniería',titleEn:'Engineering cases',descriptionEs:'Decisiones técnicas y aprendizajes',descriptionEn:'Technical decisions and lessons learned',href:'#casos',keywords:'casos estudios arquitectura engineering'},
@@ -381,7 +489,7 @@
       const productItems = PRODUCTS.filter(product => [
         product.name, product.summaryEs, product.summaryEn, product.categoryEs, product.categoryEn, product.tags.join(' ')
       ].join(' ').toLocaleLowerCase().includes(q)).map(product => ({
-        title: product.name, description: summary(product), icon: product.icon, id: product.id, type: t('search.products')
+        title: product.name, description: summary(product), icon: productIcon(product), id: product.id, type: t('search.products')
       }));
       const pageItems = SEARCH_PAGES.filter(page => [
         page.titleEs, page.titleEn, page.descriptionEs, page.descriptionEn, page.keywords
@@ -423,9 +531,9 @@
   }
 
   const EXAMPLES = {
-    request: 'curl -X GET \\\n  https://api.example.invalid/v1/resources \\\n  -H "Authorization: Bearer YOUR_TOKEN" \\\n  -H "Accept: application/json"',
-    response: '{\n  "data": [],\n  "meta": {\n    "version": "v1",\n    "environment": "sandbox"\n  },\n  "pagination": {\n    "next_cursor": null\n  }\n}',
-    policy: '{\n  "access": "least-privilege",\n  "secrets": "server-side-only",\n  "environment": "sandbox",\n  "webhook_signature": "required"\n}'
+    request: 'POST https://api.example.invalid/v1/operations\nAuthorization: Bearer <access-token>\nContent-Type: application/json\n\n{\n  "operation": "inventory.sync",\n  "version": "v1"\n}',
+    response: '{\n  "jsonrpc": "2.0",\n  "method": "tools/call",\n  "params": {\n    "name": "inventory_lookup",\n    "arguments": { "branch_id": "..." }\n  }\n}',
+    policy: '{\n  "surface": "operations-console",\n  "roles": ["manager", "inventory"],\n  "modules": ["catalog", "branches", "orders"],\n  "system_of_record": "existing-erp"\n}'
   };
   let activeExample = 'request';
   function setupCodeExamples() {
@@ -445,7 +553,7 @@
       }
     });
     $('[data-copy-hero]')?.addEventListener('click', async () => {
-      const text = '{\n  "product": "Hefesto",\n  "environment": "sandbox",\n  "scope": ["inventory:read"]\n}';
+      const text = '{\n  "canales": ["interfaz", "api_b2b", "mcp"],\n  "sistemas": ["erp", "crm"],\n  "acceso": "por-permisos"\n}';
       try { await navigator.clipboard.writeText(text); showToast(t('toast.copied')); }
       catch (_) { showToast(t('toast.copyError')); }
     });
@@ -544,6 +652,23 @@
     elements.forEach(element => revealObserver.observe(element));
   }
 
+  function setupInterfaceStory() {
+    const story = $('[data-interface-story]');
+    if (!story || !motionOK || !('IntersectionObserver' in window) || !window.matchMedia('(min-width: 901px)').matches) return;
+    const steps = $$('[data-story-step]', story);
+    const screens = $$('[data-story-screen]', story);
+    if (!steps.length || !screens.length) return;
+    const setActive = name => {
+      steps.forEach(step => step.classList.toggle('is-active', step.dataset.storyStep === name));
+      screens.forEach(screen => screen.classList.toggle('is-active', screen.dataset.storyScreen === name));
+    };
+    const observer = new IntersectionObserver(entries => {
+      const current = entries.filter(entry => entry.isIntersecting).sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
+      if (current) setActive(current.target.dataset.storyStep);
+    }, {rootMargin:'-36% 0px -36% 0px', threshold:[0.1,0.35,0.65,0.9]});
+    steps.forEach(step => observer.observe(step));
+  }
+
   function setupScrollEffects() {
     const header = $('.site-header');
     const progress = $('.scroll-progress');
@@ -569,7 +694,7 @@
     backTop?.addEventListener('click', () => window.scrollTo({top:0, behavior:motionOK ? 'smooth' : 'auto'}));
 
     const navLinks = $$('.desktop-nav a[href^="#"], .mobile-nav a[href^="#"]');
-    const sections = ['ecosistema','soluciones','desarrolladores','estado','casos','precios','contacto'].map(id => document.getElementById(id)).filter(Boolean);
+    const sections = ['ecosistema','soluciones','integraciones','nosotros','desarrolladores','estado','casos','precios','contacto'].map(id => document.getElementById(id)).filter(Boolean);
     if ('IntersectionObserver' in window && sections.length) {
       const activeObserver = new IntersectionObserver(entries => {
         entries.forEach(entry => {
@@ -647,6 +772,7 @@
     setupRequestForm();
     setupCredentialRequests();
     setupProductEvents();
+    setupInterfaceStory();
     setupScrollEffects();
     $('#language-select')?.addEventListener('change', event => setLanguage(event.target.value));
     $('#year') && ($('#year').textContent = String(new Date().getFullYear()));
