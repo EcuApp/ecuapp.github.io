@@ -60,7 +60,7 @@
 
       <nav class="desktop-nav" aria-label="Navegación principal">
         <div class="nav-item">
-          <button class="nav-trigger" type="button" aria-expanded="false" aria-controls="mega-products"><span data-i18n="nav.products">Productos</span><span class="nav-chevron">⌄</span></button>
+          <button class="nav-trigger" type="button" aria-expanded="false" aria-controls="mega-products"><span data-i18n="nav.products">Productos</span><span class="nav-chevron" aria-hidden="true"><svg viewBox="0 0 16 16"><path d="m4 6 4 4 4-4"/></svg></span></button>
           <div class="mega-menu" id="mega-products">
             <div class="mega-intro">
               <span class="eyebrow" data-i18n="mega.eyebrow">ECOSISTEMA ECUAPP</span>
@@ -85,7 +85,7 @@
           </div>
         </div>
         <div class="nav-item">
-          <button class="nav-trigger" type="button" aria-expanded="false" aria-controls="mega-platforms"><span data-i18n="nav.platforms">Plataformas</span><span class="nav-chevron">⌄</span></button>
+          <button class="nav-trigger" type="button" aria-expanded="false" aria-controls="mega-platforms"><span data-i18n="nav.platforms">Servicios</span><span class="nav-chevron" aria-hidden="true"><svg viewBox="0 0 16 16"><path d="m4 6 4 4 4-4"/></svg></span></button>
           <div class="mega-menu" id="mega-platforms">
             <div class="mega-intro">
               <span class="eyebrow">CAPACIDADES</span>
@@ -104,15 +104,12 @@
         <a class="nav-link" href="#integraciones" data-i18n="nav.integrations">Integraciones</a>
         <a class="nav-link" href="#nosotros" data-i18n="nav.company">Empresa</a>
         <a class="nav-link" href="#desarrolladores" data-i18n="nav.developers">Desarrolladores</a>
-        <a class="nav-link" href="#desarrolladores" data-i18n="nav.docs">Documentación</a>
         <a class="nav-link" href="#precios" data-i18n="nav.pricing">Precios</a>
       </nav>
 
       <div class="header-actions">
-        <button class="icon-button search-open" type="button" aria-label="Buscar en EcuApp" data-i18n-aria="search.open" title="Buscar (Ctrl/⌘ K)">⌕</button>
-        <label class="language-switch"><span aria-hidden="true">◎</span><select id="language-select" aria-label="Idioma"><option value="es">ES</option><option value="en">EN</option></select></label>
+        <label class="language-switch"><select id="language-select" aria-label="Idioma"><option value="es">ES</option><option value="en">EN</option></select></label>
         <button class="icon-button theme-toggle" type="button" aria-label="Cambiar tema" data-i18n-aria="theme.change" title="Cambiar tema"><span class="theme-glyph">☼</span></button>
-        <button class="button button-quiet header-access" type="button" data-open-credentials data-i18n="nav.access">Acceso</button>
         <a class="button button-primary header-contact" href="#contacto" data-i18n="nav.contact">Contacto</a>
         <button class="mobile-menu-toggle" type="button" aria-expanded="false" aria-controls="mobile-nav" aria-label="Abrir menú" data-i18n-aria="mobileMenu"><span></span><span></span></button>
       </div>
@@ -127,19 +124,18 @@
       <a href="#casos" data-i18n="nav.cases">Casos</a>
       <a href="#precios" data-i18n="nav.pricing">Precios</a>
       <a href="#contacto" data-i18n="nav.contact">Contacto</a>
-      <button class="mobile-access-button" type="button" data-open-credentials data-i18n="nav.access">Acceso</button>
     </nav>
   </header>
 
   <main id="contenido">
     <section class="hero wrap" aria-labelledby="hero-title">
       <div class="hero-copy">
-        <div class="hero-kicker"><span class="live-dot" aria-hidden="true"></span><span data-i18n="hero.kicker">TECNOLOGÍA CONECTADA · CRECIMIENTO CONTINUO</span></div>
-        <h1 id="hero-title"><span data-i18n="hero.titlePrefix">Software que encaja con tu empresa.</span> <span class="gradient-text" data-i18n="hero.titleHighlight">Y conecta lo que ya existe.</span></h1>
-        <p class="hero-subtitle" data-i18n="hero.subtitle">Diseñamos software a medida, interfaces propias y APIs B2B. Conectamos tus sistemas actuales y, cuando aplica, exponemos capacidades con MCP para herramientas y agentes autorizados.</p>
+        <div class="hero-kicker"><span class="live-dot" aria-hidden="true"></span><span data-i18n="hero.kicker">PRODUCTOS PROPIOS · SOFTWARE A MEDIDA · INTEGRACIONES</span></div>
+        <h1 id="hero-title"><span data-i18n="hero.titlePrefix">Software a medida para tu operación.</span> <span class="gradient-text" data-i18n="hero.titleHighlight">Conectado a lo que ya usas.</span></h1>
+        <p class="hero-subtitle" data-i18n="hero.subtitle">EcuApp crea productos propios y desarrolla sistemas para otras empresas. Diseñamos interfaces, APIs B2B e integraciones con tus herramientas; MCP cuando aporta valor y con permisos definidos.</p>
         <div class="hero-actions">
-          <a class="button button-primary button-large" href="#contacto"><span data-i18n="hero.primary">Diseñar una solución</span><span aria-hidden="true">↗</span></a>
-          <a class="button button-outline button-large" href="#integraciones" data-i18n="hero.secondary">Ver cómo integramos sistemas</a>
+          <a class="button button-primary button-large" href="#contacto"><span data-i18n="hero.primary">Hablemos de tu proyecto</span><span aria-hidden="true">↗</span></a>
+          <a class="button button-outline button-large" href="#ecosistema" data-i18n="hero.secondary">Ver productos y servicios</a>
         </div>
         <div class="hero-meta">
           <span><i><svg><use href="#icon-window"></use></svg></i><span data-i18n="hero.meta1">Software a medida</span></span>
@@ -159,9 +155,11 @@
           <circle cx="92" cy="230" r="3"/><circle cx="808" cy="230" r="3"/><circle cx="240" cy="398" r="3"/><circle cx="680" cy="398" r="3"/>
         </svg>
         <div class="network-core" aria-label="Núcleo del ecosistema EcuApp">
-          <img class="core-emblem" src="/assets/ecuapp-logo.png" width="52" height="52" alt="">
-          <strong data-i18n="hero.core">ECUAPP</strong>
-          <small data-i18n="hero.coreSub">Engineering partner</small>
+          <div class="network-core-content">
+            <img class="core-emblem" src="/assets/ecuapp-logo.png" width="52" height="52" alt="">
+            <strong data-i18n="hero.core">ECUAPP</strong>
+            <small data-i18n="hero.coreSub">Engineering partner</small>
+          </div>
         </div>
         <div id="network-nodes">
           <button class="network-node node-hefesto" type="button" data-open-product="hefesto"><span class="node-icon">▦</span><span><b>Hefesto</b><small>Gestión empresarial</small></span></button>
@@ -206,7 +204,7 @@
             <button class="filter-chip" type="button" data-filter="platform" aria-pressed="false" data-i18n="filter.platform">Plataformas</button>
             <button class="filter-chip" type="button" data-filter="innovation" aria-pressed="false" data-i18n="filter.innovation">Innovación</button>
           </div>
-          <span class="catalog-count" id="catalog-count">11 iniciativas</span>
+          <span class="catalog-count" id="catalog-count">8 iniciativas</span>
         </div>
         <div class="product-grid" id="product-grid">
           <article class="product-card"><div class="product-card-top"><span class="product-logo">▦</span><span class="stage-pill stage-dev">Desarrollo local</span></div><span class="product-category">Gestión empresarial</span><h3>Hefesto</h3><p>Inventario, compras, ventas, sucursales y operación comercial.</p></article>
@@ -223,50 +221,38 @@
         <p data-i18n="solutions.text">No imponemos una plantilla. Entendemos el problema, definimos la arquitectura adecuada y construimos una solución que pueda evolucionar.</p>
       </div>
       <div class="service-grid">
-        <article class="service-card reveal"><span class="service-index">01 / 06</span><span class="service-icon"><svg><use href="#icon-window"></use></svg></span><h3 data-i18n="service.1">Software a medida</h3><p data-i18n="service.1d">Aplicaciones y sistemas internos creados para tus procesos y reglas de negocio.</p></article>
-        <article class="service-card reveal reveal-delay-1"><span class="service-index">02 / 06</span><span class="service-icon"><svg><use href="#icon-grid"></use></svg></span><h3 data-i18n="service.2">Interfaces de trabajo</h3><p data-i18n="service.2d">Portales y paneles propios para que tus equipos operen con claridad.</p></article>
-        <article class="service-card reveal reveal-delay-2"><span class="service-index">03 / 06</span><span class="service-icon"><svg><use href="#icon-code"></use></svg></span><h3 data-i18n="service.3">APIs B2B</h3><p data-i18n="service.3d">Contratos y servicios para intercambiar datos entre tus sistemas y los de tus socios.</p></article>
-        <article class="service-card reveal"><span class="service-index">04 / 06</span><span class="service-icon"><svg><use href="#icon-spark"></use></svg></span><h3 data-i18n="service.4">MCP e IA aplicada</h3><p data-i18n="service.4d">Capacidades para herramientas y agentes autorizados, con permisos y alcance definidos.</p></article>
-        <article class="service-card reveal reveal-delay-1"><span class="service-index">05 / 06</span><span class="service-icon"><svg><use href="#icon-link"></use></svg></span><h3 data-i18n="service.5">Integración de sistemas</h3><p data-i18n="service.5d">Adaptadores para ERP, CRM, servicios internos y plataformas de terceros.</p></article>
-        <article class="service-card reveal reveal-delay-2"><span class="service-index">06 / 06</span><span class="service-icon"><svg><use href="#icon-refresh"></use></svg></span><h3 data-i18n="service.6">Modernización y evolución</h3><p data-i18n="service.6d">Mejoras graduales para mantener, ampliar y conectar la tecnología que ya utilizas.</p></article>
+        <article class="service-card reveal"><span class="service-index">01 / 06</span><span class="service-icon"><svg><use href="#icon-window"></use></svg></span><h3 data-i18n="service.1">Software a medida</h3><p data-i18n="service.1d">Aplicaciones y sistemas internos creados para tus procesos y reglas de negocio.</p><a class="service-link" href="#contacto" data-request-service="custom-software" data-i18n="service.action">Consultar este servicio ↗</a></article>
+        <article class="service-card reveal reveal-delay-1"><span class="service-index">02 / 06</span><span class="service-icon"><svg><use href="#icon-grid"></use></svg></span><h3 data-i18n="service.2">Interfaces de trabajo</h3><p data-i18n="service.2d">Portales y paneles propios para que tus equipos operen con claridad.</p><a class="service-link" href="#contacto" data-request-service="custom-interface" data-i18n="service.action">Consultar este servicio ↗</a></article>
+        <article class="service-card reveal reveal-delay-2"><span class="service-index">03 / 06</span><span class="service-icon"><svg><use href="#icon-code"></use></svg></span><h3 data-i18n="service.3">APIs B2B</h3><p data-i18n="service.3d">Contratos y servicios para intercambiar datos entre tus sistemas y los de tus socios.</p><a class="service-link" href="#contacto" data-request-service="b2b-api" data-i18n="service.action">Consultar este servicio ↗</a></article>
+        <article class="service-card reveal"><span class="service-index">04 / 06</span><span class="service-icon"><svg><use href="#icon-spark"></use></svg></span><h3 data-i18n="service.4">MCP e IA aplicada</h3><p data-i18n="service.4d">Capacidades para herramientas y agentes autorizados, con permisos y alcance definidos.</p><a class="service-link" href="#contacto" data-request-service="mcp-ai" data-i18n="service.action">Consultar este servicio ↗</a></article>
+        <article class="service-card reveal reveal-delay-1"><span class="service-index">05 / 06</span><span class="service-icon"><svg><use href="#icon-link"></use></svg></span><h3 data-i18n="service.5">Integración de sistemas</h3><p data-i18n="service.5d">Adaptadores para ERP, CRM, servicios internos y plataformas de terceros.</p><a class="service-link" href="#contacto" data-request-service="system-integration" data-i18n="service.action">Consultar este servicio ↗</a></article>
+        <article class="service-card reveal reveal-delay-2"><span class="service-index">06 / 06</span><span class="service-icon"><svg><use href="#icon-refresh"></use></svg></span><h3 data-i18n="service.6">Modernización y evolución</h3><p data-i18n="service.6d">Mejoras graduales para mantener, ampliar y conectar la tecnología que ya utilizas.</p><a class="service-link" href="#contacto" data-request-service="modernization" data-i18n="service.action">Consultar este servicio ↗</a></article>
       </div>
     </section>
 
     <section class="section interface-story" id="integraciones" aria-labelledby="story-title">
       <div class="wrap">
         <div class="section-heading reveal">
-          <div><span class="eyebrow" data-i18n="story.eyebrow">INTERFACES REALES · INGENIERÍA EN PROCESO</span><h2 id="story-title" data-i18n="story.title">Una interfaz propia hace que la operación cobre sentido.</h2></div>
-          <p data-i18n="story.text">Estas vistas de Hefesto muestran cómo EcuApp convierte reglas de negocio en herramientas concretas. El mismo criterio se aplica al integrar sistemas propios y plataformas de terceros.</p>
+          <div><span class="eyebrow" data-i18n="story.eyebrow">HEFESTO · VISTAS DE DESARROLLO</span><h2 id="story-title" data-i18n="story.title">Así toma forma un sistema hecho para operar.</h2></div>
+          <p data-i18n="story.text">Explora tres vistas de Hefesto: gestión de operaciones, inventario e integraciones. Son capturas del desarrollo local; muestran el enfoque de EcuApp para diseñar software alrededor de cada negocio.</p>
         </div>
         <div class="interface-story-grid" data-interface-story>
-          <div class="interface-steps">
-            <article class="interface-step is-active" data-story-step="overview">
-              <span class="interface-step-index">01 / INTERFAZ</span><span class="interface-step-icon"><svg><use href="#icon-window"></use></svg></span>
-              <h3 data-i18n="story.step1">Un espacio claro para el equipo.</h3><p data-i18n="story.step1d">Paneles y flujos que traducen el trabajo diario en una experiencia propia.</p>
-            </article>
-            <article class="interface-step" data-story-step="inventory">
-              <span class="interface-step-index">02 / OPERACIÓN</span><span class="interface-step-icon"><svg><use href="#icon-grid"></use></svg></span>
-              <h3 data-i18n="story.step2">Cada proceso, con su contexto.</h3><p data-i18n="story.step2d">Inventario, compras y ventas se conectan con las reglas de cada organización.</p>
-            </article>
-            <article class="interface-step" data-story-step="integrations">
-              <span class="interface-step-index">03 / INTEGRACIÓN</span><span class="interface-step-icon"><svg><use href="#icon-link"></use></svg></span>
-              <h3 data-i18n="story.step3">El sistema encaja en tu ecosistema.</h3><p data-i18n="story.step3d">Podemos diseñar APIs B2B, conectores y MCP según la arquitectura y los permisos acordados.</p>
-            </article>
+          <div class="interface-story-copy">
+            <div class="interface-steps" role="tablist" aria-label="Vistas de Hefesto" data-i18n-aria="story.tabs">
+              <button class="interface-step is-active" type="button" role="tab" id="hefesto-tab-overview" aria-selected="true" aria-controls="hefesto-screen" data-story-step="overview" data-screen="/assets/screens/hefesto-overview.webp" data-caption="story.screen1" data-alt-es="Vista de desarrollo de Hefesto con mapa de operaciones y sucursales" data-alt-en="Hefesto development view with operations and branches map"><span class="interface-step-index">01</span><svg aria-hidden="true"><use href="#icon-window"></use></svg><span data-i18n="story.tab1">Vista general</span></button>
+              <button class="interface-step" type="button" role="tab" id="hefesto-tab-inventory" aria-selected="false" aria-controls="hefesto-screen" data-story-step="inventory" data-screen="/assets/screens/hefesto-inventory.webp" data-caption="story.screen2" data-alt-es="Vista de desarrollo de Hefesto con resumen de inventario" data-alt-en="Hefesto development view with inventory summary"><span class="interface-step-index">02</span><svg aria-hidden="true"><use href="#icon-grid"></use></svg><span data-i18n="story.tab2">Inventario</span></button>
+              <button class="interface-step" type="button" role="tab" id="hefesto-tab-integrations" aria-selected="false" aria-controls="hefesto-screen" data-story-step="integrations" data-screen="/assets/screens/hefesto-integrations.webp" data-caption="story.screen3" data-alt-es="Vista de desarrollo de Hefesto con gestión de integraciones y webhooks" data-alt-en="Hefesto development view with integrations and webhook management"><span class="interface-step-index">03</span><svg aria-hidden="true"><use href="#icon-link"></use></svg><span data-i18n="story.tab3">Integraciones</span></button>
+            </div>
+            <div class="interface-step-detail" aria-live="polite">
+              <span class="interface-detail-kicker" data-i18n="story.detailKicker">HEFESTO / OPERACIÓN COMERCIAL</span>
+              <h3 id="story-step-title" data-i18n="story.step1">Una vista clara para cada tarea.</h3>
+              <p id="story-step-text" data-i18n="story.step1d">Paneles y flujos que traducen el trabajo diario en una experiencia propia.</p>
+            </div>
           </div>
-          <div class="interface-visual" role="group" aria-label="Capturas de desarrollo del sistema Hefesto" data-i18n-aria="story.gallery">
-            <figure class="screen-frame is-active" data-story-screen="overview">
-              <img src="/assets/screens/hefesto-overview.webp" width="1440" height="788" alt="Vista de desarrollo de Hefesto con mapa de operaciones y sucursales" loading="lazy" decoding="async">
-              <figcaption><span>HEFESTO / 01</span><strong data-i18n="story.screen1">Mapa de operaciones</strong></figcaption>
-            </figure>
-            <figure class="screen-frame" data-story-screen="inventory">
-              <img src="/assets/screens/hefesto-inventory.webp" width="1440" height="802" alt="Vista de desarrollo de Hefesto con resumen de inventario" loading="lazy" decoding="async">
-              <figcaption><span>HEFESTO / 02</span><strong data-i18n="story.screen2">Control de inventario</strong></figcaption>
-            </figure>
-            <figure class="screen-frame" data-story-screen="integrations">
-              <img src="/assets/screens/hefesto-integrations.webp" width="1440" height="797" alt="Vista de desarrollo de Hefesto con gestión de integraciones y webhooks" loading="lazy" decoding="async">
-              <figcaption><span>HEFESTO / 03</span><strong data-i18n="story.screen3">Conexiones y webhooks</strong></figcaption>
-            </figure>
-          </div>
+          <figure class="screen-frame" id="hefesto-screen" role="tabpanel" aria-labelledby="hefesto-tab-overview">
+            <div class="screen-image-wrap"><img data-story-image src="/assets/screens/hefesto-overview.webp" width="1440" height="788" alt="Vista de desarrollo de Hefesto con mapa de operaciones y sucursales" loading="lazy" decoding="async"></div>
+            <figcaption><span>HEFESTO / <b data-story-number>01</b></span><strong data-story-caption data-i18n="story.screen1">Mapa de operaciones</strong></figcaption>
+          </figure>
         </div>
         <p class="interface-note"><svg aria-hidden="true"><use href="#icon-pulse"></use></svg><span data-i18n="story.note">Capturas de Hefesto en desarrollo local. Son vistas de trabajo, no evidencia de un servicio en producción.</span></p>
       </div>
@@ -335,9 +321,6 @@
                 <tr><td>Mercurio</td><td><span class="stage-pill stage-concept" data-i18n="status.mercurioStage">Por validar</span></td><td data-i18n="status.mercurioNote">Dirección definida en el prototipo; alcance técnico por confirmar.</td></tr>
                 <tr><td>Fitness</td><td><span class="stage-pill stage-dev" data-i18n="status.fitnessStage">Implementación inicial</span></td><td data-i18n="status.fitnessNote">Base frontend/API; funciones principales siguen en construcción.</td></tr>
                 <tr><td>Mnemosine</td><td><span class="stage-pill stage-dev" data-i18n="status.mnemosineStage">V1 implementada</span></td><td data-i18n="status.mnemosineNote">Validación integral y preparación para producción continúan.</td></tr>
-                <tr><td>PDF Sign EC</td><td><span class="stage-pill stage-dev" data-i18n="status.pdfStage">QA / release</span></td><td data-i18n="status.pdfNote">Validación final de flujos reales de firma pendiente.</td></tr>
-                <tr><td>Cúspide</td><td><span class="stage-pill stage-dev" data-i18n="status.cuspideStage">En desarrollo</span></td><td data-i18n="status.cuspideNote">Madurez por confirmar con documentación actual del proyecto.</td></tr>
-                <tr><td>Clínica Estándar</td><td><span class="stage-pill stage-dev" data-i18n="status.clinicaStage">Base funcional</span></td><td data-i18n="status.clinicaNote">Calidad, accesibilidad y preparación operativa en evolución.</td></tr>
               </tbody>
             </table>
           </div>
@@ -456,14 +439,6 @@
         <p class="access-form-note" data-i18n="credentials.note">Se abrirá un borrador de correo que podrás revisar. Este formulario no crea cuentas ni emite credenciales automáticamente.</p>
         <p class="access-feedback" id="credentials-feedback" role="status" aria-live="polite"></p>
       </form>
-    </div>
-  </dialog>
-
-  <dialog class="dialog search-dialog" id="search-dialog" aria-labelledby="search-title">
-    <div class="dialog-inner">
-      <div class="search-top"><h2 id="search-title" data-i18n="search.title">Buscar en EcuApp</h2><button class="icon-button search-close" type="button" aria-label="Cerrar" data-i18n-aria="close">×</button></div>
-      <label class="search-input-wrap"><span aria-hidden="true">⌕</span><input id="global-search" type="search" autocomplete="off" data-i18n-placeholder="search.placeholder" placeholder="Busca productos, tecnologías, documentación..."><kbd>ESC</kbd></label>
-      <div class="search-results" id="search-results"><p class="search-hint" data-i18n="search.hint">Escribe para buscar en el ecosistema.</p></div>
     </div>
   </dialog>
 

@@ -10,15 +10,11 @@
     {id:'mercurio',name:'Mercurio',icon:'◈',group:'business',categoryEs:'Gestión tributaria · contable',categoryEn:'Tax · accounting operations',summaryEs:'Concepto de plataforma para procesos tributarios y contables.',summaryEn:'Platform concept for tax and accounting workflows.',stageEs:'Alcance por validar',stageEn:'Scope to validate',stage:'concept',detailEs:'El prototipo institucional identifica a Mercurio como una solución de gestión tributaria y contable. Aún no hay evidencia técnica suficiente para publicar funcionalidades, integraciones tributarias, cumplimiento normativo ni disponibilidad. El alcance se validará antes de anunciar capacidades.',detailEn:'The institutional prototype describes Mercurio as a tax and accounting solution. There is not enough technical evidence to publish features, tax integrations, regulatory compliance or availability. Scope will be validated before announcing capabilities.',tags:['Tax','Accounting','Business']},
     {id:'fitness',name:'Fitness',icon:'◉',group:'innovation',categoryEs:'Wellness · visualización 3D',categoryEn:'Wellness · 3D visualization',summaryEs:'Experiencia mobile-first para mediciones, evolución corporal y avatar 3D.',summaryEn:'Mobile-first experience for measurements, body evolution and a 3D avatar.',stageEs:'Implementación inicial',stageEn:'Initial implementation',stage:'dev',detailEs:'La base documentada separa frontend React/TypeScript y API FastAPI, con shell bilingüe y endpoints versionados de health/readiness. Cuentas, mediciones, avatar, predicciones, compartir, APIs B2B y MCP siguen en construcción. Las proyecciones no son un diagnóstico médico ni garantizan resultados.',detailEn:'The documented foundation separates a React/TypeScript frontend and FastAPI, with a bilingual shell and versioned health/readiness endpoints. Accounts, measurements, avatar, predictions, sharing, B2B APIs and MCP remain under development. Projections are not a medical diagnosis and do not guarantee outcomes.',tags:['3D','Wellness','FastAPI']},
     {id:'mnemosine',name:'Mnemosine',icon:'✳',group:'innovation',categoryEs:'Ingeniería de software · IA',categoryEn:'Software engineering · AI',summaryEs:'Project Memory OS para conservar contexto y coordinar agentes de desarrollo.',summaryEn:'Project Memory OS to preserve context and coordinate development agents.',stageEs:'V1 implementada · validación pendiente',stageEn:'V1 implemented · validation pending',stage:'dev',detailEs:'Plataforma para organizar memoria de proyectos, documentación, planes, tareas y colaboración de agentes de desarrollo. La validación integral en entornos reales y la preparación para producción continúan.',detailEn:'A platform for organizing project memory, documentation, plans, tasks and development-agent collaboration. End-to-end validation in real environments and production readiness are still in progress.',tags:['AI agents','Project memory','Engineering']},
-    {id:'pdf-sign',name:'PDF Sign EC',icon:'✍',group:'platform',categoryEs:'Firma electrónica · Chrome',categoryEn:'Electronic signature · Chrome',summaryEs:'Extensión para documentos PDF y flujos de firma electrónica.',summaryEn:'Extension for PDF documents and electronic-signature workflows.',stageEs:'QA · preparación de release',stageEn:'QA · release preparation',stage:'dev',detailEs:'El perfil institucional sitúa el proyecto en QA y preparación de release; la validación final de flujos de firma reales continúa. No se afirma disponibilidad comercial ni certificación.',detailEn:'The organization profile places the project in QA and release preparation; final validation of real signature workflows remains. No commercial availability or certification is claimed.',tags:['PDF','Chrome','Electronic signature']},
-    {id:'cuspide',name:'Cúspide',icon:'⌂',group:'business',categoryEs:'EdTech · gestión educativa',categoryEn:'EdTech · education management',summaryEs:'Plataforma multiinstitucional para la gestión de operaciones educativas.',summaryEn:'Multi-institution platform for education operations management.',stageEs:'En desarrollo',stageEn:'In development',stage:'dev',detailEs:'El perfil institucional describe una plataforma para administrar instituciones, clases, estudiantes, personal, actividades pagadas, productos e inventario con una estructura multiinstitución. El estado funcional y la disponibilidad comercial se comunicarán cuando se completen las validaciones internas.',detailEn:'The organization profile describes a platform for managing institutions, classes, students, staff, paid activities, products and inventory in a multi-institution structure. Functional status and commercial availability will be communicated after internal validation is complete.',tags:['Education','Multi-tenant','Operations']},
-    {id:'clinica',name:'Clínica Estándar',icon:'✚',group:'business',categoryEs:'HealthTech · gestión clínica',categoryEn:'HealthTech · clinic management',summaryEs:'Portal y sistema de gestión para clínicas, agenda y citas.',summaryEn:'Clinic portal and management system for schedules and appointments.',stageEs:'Base funcional en evolución',stageEn:'Functional foundation evolving',stage:'dev',detailEs:'El perfil institucional describe un portal web y sistema operativo para clínicas: información pública, especialidades, profesionales, reservas de citas, agenda y administración por roles. Continúan tareas de calidad, accesibilidad, pruebas y preparación operativa.',detailEn:'The organization profile describes a clinic portal and operating system: public information, specialties, professionals, appointment bookings, schedules and role-based administration. Quality, accessibility, testing and operational-readiness work remains.',tags:['HealthTech','Scheduling','Role-based access']}
   ];
 
   const PRODUCT_ICON_NAMES = {
     hefesto: 'grid', peitho: 'chart', helios: 'eye', tyr: 'shield', afrodita: 'link',
-    mercurio: 'receipt', fitness: 'pulse', mnemosine: 'spark', 'pdf-sign': 'file',
-    cuspide: 'building', clinica: 'heart'
+    mercurio: 'receipt', fitness: 'pulse', mnemosine: 'spark'
   };
   function productIcon(product) {
     const name = PRODUCT_ICON_NAMES[product.id] || 'grid';
@@ -76,9 +72,6 @@
     'status.mercurioStage':'Por validar','status.mercurioNote':'Dirección definida en el prototipo; alcance técnico por confirmar.',
     'status.fitnessStage':'Implementación inicial','status.fitnessNote':'Base frontend/API; funciones principales siguen en construcción.',
     'status.mnemosineStage':'V1 implementada','status.mnemosineNote':'Validación integral y preparación para producción continúan.',
-    'status.pdfStage':'QA / release','status.pdfNote':'Validación final de flujos reales de firma pendiente.',
-    'status.cuspideStage':'En desarrollo','status.cuspideNote':'Madurez por confirmar con documentación actual del proyecto.',
-    'status.clinicaStage':'Base funcional','status.clinicaNote':'Calidad, accesibilidad y preparación operativa en evolución.',
     'case.1a':'Frontend React/Vite y API Spring Boot sobre PostgreSQL.','case.1b':'Permisos por operación, negocio y sucursal.','case.1c':'Pruebas locales documentadas; no son mediciones de producción.',
     'case.2a':'FastAPI, worker de análisis y consola Angular.','case.2b':'Pruebas con material sintético y voluntarios internos con consentimiento.','case.2c':'No habilitado para producción ni decisiones sobre personas reales.',
     'case.3a':'Contratos y adaptadores intercambiables.','case.3b':'Aislamiento multi-tenant y resiliencia como criterios de diseño.','case.3c':'Runtime y pruebas reales aún pendientes.',
@@ -102,9 +95,6 @@
     'status.mercurioStage':'To be validated','status.mercurioNote':'Direction appears in the prototype; technical scope needs confirmation.',
     'status.fitnessStage':'Initial implementation','status.fitnessNote':'Frontend/API foundation; core features remain under development.',
     'status.mnemosineStage':'V1 implemented','status.mnemosineNote':'End-to-end validation and production readiness remain in progress.',
-    'status.pdfStage':'QA / release','status.pdfNote':'Final validation of real signature workflows remains pending.',
-    'status.cuspideStage':'In development','status.cuspideNote':'Maturity needs confirmation against current project documentation.',
-    'status.clinicaStage':'Functional foundation','status.clinicaNote':'Quality, accessibility and operational readiness continue to evolve.',
     'case.1a':'React/Vite frontend and Spring Boot API on PostgreSQL.','case.1b':'Permissions by operation, business and branch.','case.1c':'Local tests are documented; they are not production measurements.',
     'case.2a':'FastAPI, analysis worker and Angular console.','case.2b':'Tests with synthetic material and consented internal volunteers.','case.2c':'Not production-ready and not for decisions about real people.',
     'case.3a':'Interchangeable contracts and adapters.','case.3b':'Multi-tenant isolation and resilience as design criteria.','case.3c':'Runtime and real integration tests remain pending.',
@@ -127,12 +117,12 @@
   });
 
   Object.assign(COPY.es, {
-    'nav.integrations':'Integraciones','nav.company':'Empresa',
-    'hero.kicker':'SOFTWARE A MEDIDA · SISTEMAS CONECTADOS',
-    'hero.titlePrefix':'Software que encaja con tu empresa.','hero.titleHighlight':'Y conecta lo que ya existe.',
-    'hero.title':'Software que encaja con tu empresa. Y conecta lo que ya existe.',
-    'hero.subtitle':'Diseñamos software a medida, interfaces propias y APIs B2B. Conectamos tus sistemas actuales y, cuando aplica, exponemos capacidades con MCP para herramientas y agentes autorizados.',
-    'hero.primary':'Diseñar una solución','hero.secondary':'Ver cómo integramos sistemas',
+    'nav.integrations':'Integraciones','nav.company':'Empresa','nav.platforms':'Servicios',
+    'hero.kicker':'PRODUCTOS PROPIOS · SOFTWARE A MEDIDA · INTEGRACIONES',
+    'hero.titlePrefix':'Software a medida para tu operación.','hero.titleHighlight':'Conectado a lo que ya usas.',
+    'hero.title':'Software a medida para tu operación. Conectado a lo que ya usas.',
+    'hero.subtitle':'EcuApp crea productos propios y desarrolla sistemas para otras empresas. Diseñamos interfaces, APIs B2B e integraciones con tus herramientas; MCP cuando aporta valor y con permisos definidos.',
+    'hero.primary':'Hablemos de tu proyecto','hero.secondary':'Ver productos y servicios',
     'hero.meta1':'Software a medida','hero.meta2':'APIs B2B · MCP','hero.meta3':'Interfaces propias',
     'hero.coreSub':'Engineering partner','hero.caption':'Productos propios y soluciones a medida pueden convivir dentro de una misma arquitectura.',
     'mega.apis':'APIs B2B','mega.apisDesc':'Conexión sistema a sistema',
@@ -146,15 +136,19 @@
     'service.4':'MCP e IA aplicada','service.4d':'Capacidades para herramientas y agentes autorizados, con permisos y alcance definidos.',
     'service.5':'Integración de sistemas','service.5d':'Adaptadores para ERP, CRM, servicios internos y plataformas de terceros.',
     'service.6':'Modernización y evolución','service.6d':'Mejoras graduales para mantener, ampliar y conectar la tecnología que ya utilizas.',
-    'story.eyebrow':'INTERFACES REALES · INGENIERÍA EN PROCESO',
-    'story.title':'Una interfaz propia hace que la operación cobre sentido.',
-    'story.text':'Estas vistas de Hefesto muestran cómo EcuApp convierte reglas de negocio en herramientas concretas. El mismo criterio se aplica al integrar sistemas propios y plataformas de terceros.',
-    'story.step1':'Un espacio claro para el equipo.','story.step1d':'Paneles y flujos que traducen el trabajo diario en una experiencia propia.',
-    'story.step2':'Cada proceso, con su contexto.','story.step2d':'Inventario, compras y ventas se conectan con las reglas de cada organización.',
-    'story.step3':'El sistema encaja en tu ecosistema.','story.step3d':'Podemos diseñar APIs B2B, conectores y MCP según la arquitectura y los permisos acordados.',
+    'story.eyebrow':'HEFESTO · VISTAS DE DESARROLLO',
+    'story.title':'Así toma forma un sistema hecho para operar.',
+    'story.text':'Explora tres vistas de Hefesto: gestión de operaciones, inventario e integraciones. Son capturas del desarrollo local; muestran el enfoque de EcuApp para diseñar software alrededor de cada negocio.',
+    'story.tab1':'Vista general','story.tab2':'Inventario','story.tab3':'Integraciones','story.tabs':'Vistas de Hefesto',
+    'story.detailKicker':'HEFESTO / OPERACIÓN COMERCIAL',
+    'story.step1':'Una vista clara para cada tarea.','story.step1d':'Paneles y flujos que traducen el trabajo diario en una experiencia propia.',
+    'story.step2':'Inventario conectado a la operación.','story.step2d':'Productos, existencias y movimientos dentro del contexto de cada sucursal.',
+    'story.step3':'Conexiones pensadas para tu ecosistema.','story.step3d':'APIs B2B y webhooks para adaptar el intercambio de datos a cada sistema.',
     'story.gallery':'Capturas de desarrollo del sistema Hefesto',
     'story.screen1':'Mapa de operaciones','story.screen2':'Control de inventario','story.screen3':'Conexiones y webhooks',
     'story.note':'Capturas de Hefesto en desarrollo local. Son vistas de trabajo, no evidencia de un servicio en producción.',
+    'modal.access':'Solicitar acceso de evaluación','modal.contact':'Consultar sobre este producto',
+    'service.action':'Consultar este servicio ↗',
     'brand.eyebrow':'QUIÉNES SOMOS · ECUADOR',
     'brand.title':'Ingeniería que entiende el contexto antes de construir.',
     'brand.text':'EcuApp crea productos propios y acompaña a otras organizaciones a resolver necesidades reales con tecnología que se adapta a su entorno.',
@@ -172,12 +166,12 @@
     'footer.tagline':'Ingeniería que se adapta a tu operación.'
   });
   Object.assign(COPY.en, {
-    'nav.integrations':'Integrations','nav.company':'Company',
-    'hero.kicker':'CUSTOM SOFTWARE · CONNECTED SYSTEMS',
-    'hero.titlePrefix':'Software that fits your business.','hero.titleHighlight':'And connects what already works.',
-    'hero.title':'Software that fits your business. And connects what already works.',
-    'hero.subtitle':'We design custom software, purpose-built interfaces and B2B APIs. We connect your current systems and, when it makes sense, expose capabilities through MCP for authorized tools and agents.',
-    'hero.primary':'Design a solution','hero.secondary':'See how we connect systems',
+    'nav.integrations':'Integrations','nav.company':'Company','nav.platforms':'Services',
+    'hero.kicker':'OUR PRODUCTS · CUSTOM SOFTWARE · INTEGRATIONS',
+    'hero.titlePrefix':'Custom software for your operations.','hero.titleHighlight':'Connected to what you already use.',
+    'hero.title':'Custom software for your operations. Connected to what you already use.',
+    'hero.subtitle':'EcuApp develops its own products and builds systems for other businesses. We design interfaces, B2B APIs and integrations around your tools; MCP where it adds value and with defined permissions.',
+    'hero.primary':'Discuss your project','hero.secondary':'Explore products and services',
     'hero.meta1':'Custom software','hero.meta2':'B2B APIs · MCP','hero.meta3':'Purpose-built interfaces',
     'hero.coreSub':'Engineering partner','hero.caption':'EcuApp products and custom solutions can work together in one architecture.',
     'mega.apis':'B2B APIs','mega.apisDesc':'System-to-system connections',
@@ -191,15 +185,19 @@
     'service.4':'MCP and applied AI','service.4d':'Capabilities for authorized tools and agents, with defined scope and permissions.',
     'service.5':'System integration','service.5d':'Adapters for ERP, CRM, internal services and third-party platforms.',
     'service.6':'Modernization and evolution','service.6d':'Incremental improvements that maintain, extend and connect the technology you already use.',
-    'story.eyebrow':'REAL INTERFACES · ENGINEERING IN PROGRESS',
-    'story.title':'A purpose-built interface gives operations a clearer shape.',
-    'story.text':'These Hefesto screens show how EcuApp turns business rules into practical tools. We apply the same care when connecting existing systems and third-party platforms.',
-    'story.step1':'A clear workspace for the team.','story.step1d':'Dashboards and flows that translate daily work into a purpose-built experience.',
-    'story.step2':'Every process, with its context.','story.step2d':'Inventory, purchasing and sales follow each organization’s rules.',
-    'story.step3':'Software that fits your ecosystem.','story.step3d':'We can design B2B APIs, connectors and MCP around the agreed architecture and permissions.',
+    'story.eyebrow':'HEFESTO · DEVELOPMENT VIEWS',
+    'story.title':'A system takes shape around the work.',
+    'story.text':'Explore three Hefesto views: operations, inventory and integrations. These local development screenshots show how EcuApp shapes software around each business.',
+    'story.tab1':'Overview','story.tab2':'Inventory','story.tab3':'Integrations','story.tabs':'Hefesto views',
+    'story.detailKicker':'HEFESTO / BUSINESS OPERATIONS',
+    'story.step1':'A clear view for every task.','story.step1d':'Dashboards and flows turn day-to-day work into a purpose-built experience.',
+    'story.step2':'Inventory connected to operations.','story.step2d':'Products, stock and movements in the context of each branch.',
+    'story.step3':'Connections designed for your ecosystem.','story.step3d':'B2B APIs and webhooks adapt data exchange to each system.',
     'story.gallery':'Hefesto development screenshots',
     'story.screen1':'Operations map','story.screen2':'Inventory controls','story.screen3':'Connections and webhooks',
     'story.note':'Hefesto screenshots from local development. They show work in progress, not a production service.',
+    'modal.access':'Request evaluation access','modal.contact':'Ask about this product',
+    'service.action':'Ask about this service ↗',
     'brand.eyebrow':'WHO WE ARE · ECUADOR',
     'brand.title':'Engineering that understands the context before building.',
     'brand.text':'EcuApp creates its own products and helps other organizations solve real needs with technology that fits their environment.',
@@ -220,7 +218,7 @@
 
   Object.assign(COPY.es, {
     'credentials.eyebrow':'ACCESO CONTROLADO','credentials.title':'Solicita acceso a un producto EcuApp.',
-    'credentials.description':'Los entornos privados se habilitan después de validar la organización, el caso de uso y los permisos necesarios. Nunca compartas contraseñas ni tokens por correo.',
+    'credentials.description':'La solicitud se revisa según el producto, la organización y el caso de uso. Pedir acceso no garantiza un entorno activo; EcuApp confirmará las opciones disponibles. Nunca compartas contraseñas ni tokens por correo.',
     'credentials.email':'Correo corporativo','credentials.organization':'Organización','credentials.product':'Producto',
     'credentials.role':'Perfil de acceso solicitado','credentials.roleEvaluation':'Evaluación técnica',
     'credentials.roleDeveloper':'Desarrollador / integración','credentials.roleBusiness':'Usuario empresarial',
@@ -234,7 +232,7 @@
   });
   Object.assign(COPY.en, {
     'credentials.eyebrow':'CONTROLLED ACCESS','credentials.title':'Request access to an EcuApp product.',
-    'credentials.description':'Private environments are enabled after the organization, use case and required permissions are reviewed. Never share passwords or tokens by email.',
+    'credentials.description':'Requests are reviewed based on the product, organization and use case. Requesting access does not guarantee an active environment; EcuApp will confirm available options. Never share passwords or tokens by email.',
     'credentials.email':'Business email','credentials.organization':'Organization','credentials.product':'Product',
     'credentials.role':'Requested access profile','credentials.roleEvaluation':'Technical evaluation',
     'credentials.roleDeveloper':'Developer / integration','credentials.roleBusiness':'Business user',
@@ -249,6 +247,8 @@
 
   let language = 'es';
   let activeFilter = 'all';
+  let activeStoryStep = 'overview';
+  let activeCredentialProduct = '';
   const $ = (selector, root=document) => root.querySelector(selector);
   const $$ = (selector, root=document) => Array.from(root.querySelectorAll(selector));
   const t = key => (COPY[language] && COPY[language][key]) || COPY.es[key] || key;
@@ -296,6 +296,8 @@
     renderProducts();
     fillProductSelect();
     updateResponsiveTableLabels();
+    syncInterfaceStory();
+    syncCredentialHeading();
     if ($('#product-dialog')?.open && $('#product-dialog').dataset.product) openProduct($('#product-dialog').dataset.product, false);
   }
   function setLanguage(next) {
@@ -303,6 +305,15 @@
     language = next;
     safeStorageSet('ecuapp-language', next);
     renderTranslations();
+  }
+
+  function syncCredentialHeading() {
+    const heading = $('#credentials-title');
+    const product = PRODUCTS.find(item => item.id === activeCredentialProduct);
+    if (!heading || !product) return;
+    heading.textContent = language === 'en'
+      ? 'Request evaluation access for ' + product.name + '.'
+      : 'Solicita acceso de evaluación para ' + product.name + '.';
   }
 
   function productCard(product) {
@@ -359,7 +370,8 @@
       '<span class="eyebrow">' + category(product) + '</span><h2 id="product-dialog-title"><span class="product-dialog-icon">' + productIcon(product) + '</span>' + product.name + '</h2>' +
       '<p>' + detail(product) + '</p><div class="dialog-meta"><span>' + t('modal.stage') + ': ' + stage(product) + '</span>' +
       product.tags.map(tag => '<span>' + tag + '</span>').join('') + '</div><div class="dialog-actions">' +
-      '<a class="button button-primary" href="#contacto" data-dialog-contact>' + t('modal.contact') + ' ↗</a></div>';
+      '<button class="button button-primary" type="button" data-open-credentials data-credential-product="' + product.id + '">' + t('modal.access') + ' ↗</button>' +
+      '<a class="button button-outline" href="#contacto" data-dialog-contact>' + t('modal.contact') + ' ↗</a></div>';
     $('[data-dialog-contact]', $('#product-dialog-content'))?.addEventListener('click', () => {
       dialog.close();
       document.querySelector('#contacto')?.scrollIntoView({behavior: motionOK ? 'smooth' : 'auto'});
@@ -404,7 +416,6 @@
       menuButton?.setAttribute('aria-label', t('menu.open'));
     };
     $$('#mobile-nav a').forEach(link => link.addEventListener('click', closeMobileMenu));
-    $('.mobile-access-button', mobile)?.addEventListener('click', closeMobileMenu);
     window.addEventListener('resize', () => {
       if (window.innerWidth > 1150) {
         mobile?.classList.remove('is-open');
@@ -447,86 +458,22 @@
     productDialog?.addEventListener('click', event => {
       if (event.target === productDialog) productDialog.close();
     });
-    const searchDialog = $('#search-dialog');
-    $('.search-close')?.addEventListener('click', () => searchDialog?.close());
-    searchDialog?.addEventListener('click', event => {
-      if (event.target === searchDialog) searchDialog.close();
-    });
     const credentialsDialog = $('#credentials-dialog');
     $('.credentials-close')?.addEventListener('click', () => credentialsDialog?.close());
     credentialsDialog?.addEventListener('click', event => {
       if (event.target === credentialsDialog) credentialsDialog.close();
     });
-    $$('[data-open-credentials]').forEach(button => button.addEventListener('click', () => {
+    document.addEventListener('click', event => {
+      const button = event.target.closest('[data-open-credentials]');
+      if (!button || !credentialsDialog) return;
+      const product = PRODUCTS.find(item => item.id === button.dataset.credentialProduct);
+      const productSelect = $('#credentials-product');
+      activeCredentialProduct = product ? product.id : '';
+      if (product && productSelect) productSelect.value = product.name;
+      syncCredentialHeading();
       closeMegaMenus();
-      $('#mobile-nav')?.classList.remove('is-open');
-      $('.mobile-menu-toggle')?.setAttribute('aria-expanded', 'false');
-      renderTranslations();
-      if (credentialsDialog && !credentialsDialog.open) credentialsDialog.showModal();
-    }));
-  }
-
-  const SEARCH_PAGES = [
-    {titleEs:'Productos y ecosistema',titleEn:'Products and ecosystem',descriptionEs:'Catálogo, productos y etapas documentadas',descriptionEn:'Catalog, products and documented stages',href:'#ecosistema',keywords:'productos producto ERP CRM software'},
-    {titleEs:'Plataformas y servicios',titleEn:'Platforms and services',descriptionEs:'Software a medida, APIs B2B, MCP e interfaces',descriptionEn:'Custom software, B2B APIs, MCP and interfaces',href:'#soluciones',keywords:'plataformas servicios software APIs MCP interfaces'},
-    {titleEs:'Integraciones',titleEn:'Integrations',descriptionEs:'Conectores para sistemas existentes, APIs B2B y MCP',descriptionEn:'Connectors for existing systems, B2B APIs and MCP',href:'#integraciones',keywords:'integraciones ERP CRM MCP APIs conexiones'},
-    {titleEs:'Centro para desarrolladores',titleEn:'Developer center',descriptionEs:'Contratos, seguridad y solicitud de evaluación',descriptionEn:'Contracts, security and evaluation requests',href:'#desarrolladores',keywords:'developers docs documentación credenciales'},
-    {titleEs:'Estado del ecosistema',titleEn:'Ecosystem status',descriptionEs:'Madurez, SLA y transparencia operativa',descriptionEn:'Maturity, SLA and operational transparency',href:'#estado',keywords:'estado SLA SLO uptime incidentes'},
-    {titleEs:'Casos de ingeniería',titleEn:'Engineering cases',descriptionEs:'Decisiones técnicas y aprendizajes',descriptionEn:'Technical decisions and lessons learned',href:'#casos',keywords:'casos estudios arquitectura engineering'},
-    {titleEs:'Modalidades y precios',titleEn:'Engagement and pricing',descriptionEs:'Exploración, implementación y acompañamiento',descriptionEn:'Discovery, implementation and ongoing support',href:'#precios',keywords:'precios pricing cotización'}
-  ];
-  function setupSearch() {
-    const dialog = $('#search-dialog');
-    const input = $('#global-search');
-    const results = $('#search-results');
-    if (!dialog || !input || !results) return;
-    function search(query) {
-      const q = query.trim().toLocaleLowerCase();
-      if (!q) {
-        results.innerHTML = '<p class="search-hint">' + t('search.hint') + '</p>';
-        return;
-      }
-      const productItems = PRODUCTS.filter(product => [
-        product.name, product.summaryEs, product.summaryEn, product.categoryEs, product.categoryEn, product.tags.join(' ')
-      ].join(' ').toLocaleLowerCase().includes(q)).map(product => ({
-        title: product.name, description: summary(product), icon: productIcon(product), id: product.id, type: t('search.products')
-      }));
-      const pageItems = SEARCH_PAGES.filter(page => [
-        page.titleEs, page.titleEn, page.descriptionEs, page.descriptionEn, page.keywords
-      ].join(' ').toLocaleLowerCase().includes(q)).map(page => ({
-        title: language === 'en' ? page.titleEn : page.titleEs,
-        description: language === 'en' ? page.descriptionEn : page.descriptionEs,
-        icon: '↗', href: page.href, type: t('search.section')
-      }));
-      const items = productItems.concat(pageItems).slice(0, 14);
-      if (!items.length) {
-        results.innerHTML = '<p class="search-hint">' + t('search.empty') + '</p>';
-        return;
-      }
-      results.innerHTML = items.map((item, index) =>
-        '<button type="button" class="search-result" data-search-index="' + index + '"><span class="search-result-icon">' + item.icon + '</span>' +
-        '<span class="search-result-copy"><b>' + item.title + '</b><small>' + item.description + '</small></span><em>' + item.type + '</em></button>'
-      ).join('');
-      $$('.search-result', results).forEach((button, index) => button.addEventListener('click', () => {
-        const item = items[index];
-        dialog.close();
-        if (item.id) openProduct(item.id);
-        else document.querySelector(item.href)?.scrollIntoView({behavior: motionOK ? 'smooth' : 'auto'});
-      }));
-    }
-    function open() {
-      dialog.showModal();
-      input.value = '';
-      search('');
-      window.setTimeout(() => input.focus(), 30);
-    }
-    $('.search-open')?.addEventListener('click', open);
-    input.addEventListener('input', () => search(input.value));
-    document.addEventListener('keydown', event => {
-      if ((event.ctrlKey || event.metaKey) && event.key.toLowerCase() === 'k') {
-        event.preventDefault();
-        if (!dialog.open) open();
-      }
+      productDialog?.close();
+      if (!credentialsDialog.open) credentialsDialog.showModal();
     });
   }
 
@@ -652,21 +599,74 @@
     elements.forEach(element => revealObserver.observe(element));
   }
 
+  function syncInterfaceStory() {
+    const story = $('[data-interface-story]');
+    if (!story) return;
+    const steps = $$('[data-story-step]', story);
+    const active = steps.find(step => step.dataset.storyStep === activeStoryStep) || steps[0];
+    if (!active) return;
+    activeStoryStep = active.dataset.storyStep;
+    steps.forEach(step => {
+      const selected = step === active;
+      step.classList.toggle('is-active', selected);
+      step.setAttribute('aria-selected', String(selected));
+    });
+    const copyNumber = activeStoryStep === 'overview' ? '1' : activeStoryStep === 'inventory' ? '2' : '3';
+    const image = $('[data-story-image]', story);
+    const caption = $('[data-story-caption]', story);
+    const title = $('#story-step-title');
+    const description = $('#story-step-text');
+    const copyKeys = activeStoryStep === 'overview' ? ['story.step1','story.step1d'] : activeStoryStep === 'inventory' ? ['story.step2','story.step2d'] : ['story.step3','story.step3d'];
+    if (title) title.textContent = t(copyKeys[0]);
+    if (description) description.textContent = t(copyKeys[1]);
+    if (caption) caption.textContent = t(active.dataset.caption);
+    const number = $('[data-story-number]', story);
+    if (number) number.textContent = copyNumber.padStart(2, '0');
+    if (image) image.alt = language === 'en' ? active.dataset.altEn : active.dataset.altEs;
+    $('#hefesto-screen')?.setAttribute('aria-labelledby', active.id);
+  }
+
   function setupInterfaceStory() {
     const story = $('[data-interface-story]');
-    if (!story || !motionOK || !('IntersectionObserver' in window) || !window.matchMedia('(min-width: 901px)').matches) return;
+    if (!story) return;
     const steps = $$('[data-story-step]', story);
-    const screens = $$('[data-story-screen]', story);
-    if (!steps.length || !screens.length) return;
-    const setActive = name => {
-      steps.forEach(step => step.classList.toggle('is-active', step.dataset.storyStep === name));
-      screens.forEach(screen => screen.classList.toggle('is-active', screen.dataset.storyScreen === name));
-    };
-    const observer = new IntersectionObserver(entries => {
-      const current = entries.filter(entry => entry.isIntersecting).sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
-      if (current) setActive(current.target.dataset.storyStep);
-    }, {rootMargin:'-36% 0px -36% 0px', threshold:[0.1,0.35,0.65,0.9]});
-    steps.forEach(step => observer.observe(step));
+    const image = $('[data-story-image]', story);
+    if (!steps.length || !image) return;
+    steps.forEach((step, index) => {
+      step.addEventListener('click', () => {
+        if (step.dataset.storyStep !== activeStoryStep) {
+          image.classList.remove('screen-transition');
+          void image.offsetWidth;
+          image.src = step.dataset.screen;
+          image.classList.add('screen-transition');
+          activeStoryStep = step.dataset.storyStep;
+          syncInterfaceStory();
+        }
+      });
+      step.addEventListener('keydown', event => {
+        let nextIndex = index;
+        if (event.key === 'ArrowRight' || event.key === 'ArrowDown') nextIndex = (index + 1) % steps.length;
+        else if (event.key === 'ArrowLeft' || event.key === 'ArrowUp') nextIndex = (index + steps.length - 1) % steps.length;
+        else if (event.key === 'Home') nextIndex = 0;
+        else if (event.key === 'End') nextIndex = steps.length - 1;
+        else return;
+        event.preventDefault();
+        steps[nextIndex].focus();
+        steps[nextIndex].click();
+      });
+    });
+    syncInterfaceStory();
+  }
+
+  function setupServiceRequests() {
+    document.addEventListener('click', event => {
+      const link = event.target.closest('[data-request-service]');
+      if (!link) return;
+      const select = $('#request-product');
+      if (select && [...select.options].some(option => option.value === link.dataset.requestService)) {
+        select.value = link.dataset.requestService;
+      }
+    });
   }
 
   function setupScrollEffects() {
@@ -767,10 +767,10 @@
     setupNavigation();
     setupFilters();
     setupDialogs();
-    setupSearch();
     setupCodeExamples();
     setupRequestForm();
     setupCredentialRequests();
+    setupServiceRequests();
     setupProductEvents();
     setupInterfaceStory();
     setupScrollEffects();
